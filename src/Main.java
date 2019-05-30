@@ -41,7 +41,7 @@ public class Main extends Application {
         vieBoss.widthProperty().bind(b2);*/
 
         Image image4 = ImageLoader.get().load("bombe_eau.png") ;
-        Image poseidon = ImageLoader.get().load("poseidonbas1.gif") ;
+        Image poseidon = ImageLoader.get().load("poseidonbas1.png") ;
         Pane root = new Pane() ;
         primaryStage.setTitle("Age of Mythorman of Mythology 3");
         Rectangle rectangle = new Rectangle(15, 15, Personnages.getDeplacement(), Personnages.getDeplacement()) ;
@@ -49,9 +49,9 @@ public class Main extends Application {
         rectangle.setY(Personnages.getDeplacement()) ;
         rectangle.setFill(new ImagePattern(poseidon));
 
-        Personnages.putMapImage();
+        Map.putMapImage();
 
-        root.getChildren().addAll(Personnages.getMap());
+        root.getChildren().addAll(Map.getMap());
 
         root.getChildren().add(rectangle) ;
         root.getChildren().add(Personnages.getCircle()) ;

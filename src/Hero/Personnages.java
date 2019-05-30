@@ -25,27 +25,15 @@ public class Personnages  {
     private String nom;
     private int hp ;
     private static Circle circle ;
-    static Image poseidonhaut1 = ImageLoader.get().load("poseidonhaut1.gif") ;
-    static Image poseidonhaut2 = ImageLoader.get().load("poseidonhaut2.gif") ;
-    static Image poseidondroite1 = ImageLoader.get().load("poseidondroite1.gif") ;
-    static Image poseidondroite2 = ImageLoader.get().load("poseidondroite2.gif") ;
-    static Image poseidonbas1 = ImageLoader.get().load("poseidonbas1.gif") ;
-    static Image poseidonbas2 = ImageLoader.get().load("poseidonbas2.gif") ;
-    static Image poseidongauche1 = ImageLoader.get().load("poseidongauche1.gif") ;
-    static Image poseidongauche2 = ImageLoader.get().load("poseidongauche2.gif") ;
+    static Image poseidonhaut1 = ImageLoader.get().load("poseidonhaut1.png") ;
+    static Image poseidonhaut2 = ImageLoader.get().load("poseidonhaut2.png") ;
+    static Image poseidondroite1 = ImageLoader.get().load("poseidondroite1.png") ;
+    static Image poseidondroite2 = ImageLoader.get().load("poseidondroite2.png") ;
+    static Image poseidonbas1 = ImageLoader.get().load("poseidonbas1.png") ;
+    static Image poseidonbas2 = ImageLoader.get().load("poseidonbas2.png") ;
+    static Image poseidongauche1 = ImageLoader.get().load("poseidongauche1.png") ;
+    static Image poseidongauche2 = ImageLoader.get().load("poseidongauche2.png") ;
     static Image bombe_eau = ImageLoader.get().load("bombe_eau.png")  ;
-    static Image mur2 = ImageLoader.get().load("mur2.png") ;
-    static Image mur3 = ImageLoader.get().load("mur3.png") ;
-    static Image mur4 = ImageLoader.get().load("mur4.png") ;
-    static Image mur1 = ImageLoader.get().load("mur1.png") ;
-    static Image terrain1 = ImageLoader.get().load("terrain1.png");
-    static ImagePattern terrain1Pattern = new ImagePattern(terrain1);
-    static Image terrain2 = ImageLoader.get().load("terrain2.png");
-    static ImagePattern terrain2Pattern = new ImagePattern(terrain2);
-    static Image terrain3 = ImageLoader.get().load("terrain3.png");
-    static ImagePattern terrain3Pattern = new ImagePattern(terrain3);
-    static Image terrain4 = ImageLoader.get().load("terrain4.png");
-    static ImagePattern terrain4Pattern = new ImagePattern(terrain4);
     static private BooleanProperty enMarcheUp = new SimpleBooleanProperty(true) ;
     static private BooleanProperty enMarcheBombe = new SimpleBooleanProperty(true) ;
     final static double  deplacement = 64 ;
@@ -61,8 +49,7 @@ public class Personnages  {
     public static boolean isEmpty(String case3,Rectangle rectangle) {
         if ( case3 == "UP" ) {
             for ( Rectangle i : map ) {
-                if ( rectangle.getY() - deplacement == i.getY() && rectangle.getX() == i.getX() && (i.getFill().equals(terrain4Pattern) ||
-                        i.getFill().equals(terrain3Pattern) || i.getFill().equals(terrain2Pattern) || i.getFill().equals(terrain1Pattern) )) {
+                if ( rectangle.getY() - deplacement == i.getY() && rectangle.getX() == i.getX() && i.getFill().equals(Color.GREEN)  ) {
 
                     return true ;
 
@@ -75,8 +62,7 @@ public class Personnages  {
         if ( case3 == "RIGHT" ) {
             for ( Rectangle i : map) {
 
-                if ( rectangle.getX()  + deplacement == i.getX() && rectangle.getY() == i.getY() && (i.getFill().equals(terrain4Pattern) ||
-                        i.getFill().equals(terrain3Pattern) || i.getFill().equals(terrain2Pattern) || i.getFill().equals(terrain1Pattern) ) ) {
+                if ( rectangle.getX()  + deplacement == i.getX() && rectangle.getY() == i.getY() && i.getFill().equals(Color.GREEN) ) {
                     return true ;
                 }
             }
@@ -84,8 +70,7 @@ public class Personnages  {
         }
         if ( case3 == "LEFT" ) {
             for ( Rectangle i : map ) {
-                if ( rectangle.getX() - deplacement == i.getX() && (i.getFill().equals(terrain4Pattern) ||
-                        i.getFill().equals(terrain3Pattern) || i.getFill().equals(terrain2Pattern) || i.getFill().equals(terrain1Pattern) ) ) {
+                if ( rectangle.getX() - deplacement == i.getX() && i.getFill().equals(Color.GREEN) ) {
                     return true ;
                 }
 
@@ -94,8 +79,7 @@ public class Personnages  {
         }
         else if ( case3 == "DOWN") {
             for ( Rectangle i : map ) {
-                if ( rectangle.getY()+deplacement  == i.getY() && rectangle.getX() == i.getX() && (i.getFill().equals(terrain4Pattern) ||
-                        i.getFill().equals(terrain3Pattern) || i.getFill().equals(terrain2Pattern) || i.getFill().equals(terrain1Pattern) ) ) {
+                if ( rectangle.getY()+deplacement  == i.getY() && rectangle.getX() == i.getX() && i.getFill().equals(Color.GREEN) ) {
                     return true ;
                 }
 
@@ -104,28 +88,6 @@ public class Personnages  {
         }
         return false ;
     }
-
-    public static void putMapImage() {
-        for(Rectangle i : map ) {
-            if (i.getFill().equals(Color.BLACK) && (i.getY()== i.getHeight()*12 || i.getY() == 0) && i.getX() != 0 && i.getX() != i.getWidth()*12  ) {
-                i.setFill(new ImagePattern(mur3));
-            }
-            if(i.getFill().equals(Color.BLACK) && i.getY() == i.getHeight()*12 && i.getX() == 0 ) {
-                i.setFill(new ImagePattern(mur2));
-            }
-            if(i.getFill().equals(Color.BLACK) && i.getY() == i.getHeight()*12 && i.getX() == i.getWidth()*12 ) {
-                i.setFill(new ImagePattern(mur4));
-            }
-            if(i.getFill().equals(Color.GREEN)){
-                i.setFill(terrain4Pattern);
-            }
-        }
-    }
-
-
-
-
-
 
     public static void moveRectangleOnKeyPress(Scene scene, final Rectangle rectangle) {
 
@@ -146,18 +108,12 @@ public class Personnages  {
                                                           new KeyFrame(Duration.millis(300), new KeyValue(rectangle.fillProperty(), new ImagePattern(poseidonhaut1))),
                                                           new KeyFrame(Duration.millis(300), new KeyValue(Personnages.enMarcheUp.asObject(), true)),
                                                           new KeyFrame(Duration.millis(300), new KeyValue(rectangle.yProperty(), (int)rectangle.getY() - deplacement))
-
-
                                                   );
 
                                                   timeline.play();
-
-
                                               }
-
                                               break;
                                           case RIGHT:
-
                                               if (rectangle.getX() < scene.getWidth() - rectangle.getWidth() - deplacement && Personnages.enMarcheUp.getValue() && isEmpty("RIGHT",rectangle)) {
                                                   Timeline timeline = new Timeline();
                                                   Personnages.enMarcheUp.set(false);
@@ -167,11 +123,8 @@ public class Personnages  {
                                                           new KeyFrame(Duration.millis(300), new KeyValue(rectangle.fillProperty(), new ImagePattern(poseidondroite1))),
                                                           new KeyFrame(Duration.millis(300), new KeyValue(Personnages.enMarcheUp.asObject(), true)),
                                                           new KeyFrame(Duration.millis(300), new KeyValue(rectangle.xProperty(), rectangle.getX() + deplacement))
-
                                                   );
                                                   timeline.play();
-
-
                                               }
 
                                               break;
@@ -220,12 +173,9 @@ public class Personnages  {
                                                           new KeyFrame(Duration.millis(1990), new KeyValue(Personnages.circle.opacityProperty(), 1)),
                                                           new KeyFrame(Duration.millis(2000), new KeyValue(Personnages.circle.opacityProperty(), 0)),
                                                           new KeyFrame(Duration.millis(3000), new KeyValue(Personnages.enMarcheBombe.asObject(), true))
-
-
                                                   );
                                                   timeline5.play();
                                               }
-
                                       }
                                   }
                               }
@@ -247,9 +197,6 @@ public class Personnages  {
 
     public static Circle getCircle() {
         return circle;
-    }
+     }
 
-    public static Rectangle[] getMap() {
-        return map ;
-    }
 }
