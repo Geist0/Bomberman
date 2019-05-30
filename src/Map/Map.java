@@ -89,7 +89,7 @@ public class Map{
                 i.setFill(new ImagePattern(mur0));
             }
             if (i.getFill().equals(Color.GREEN)){
-                i.setFill(new ImagePattern(grass));
+                i.setFill(Personnages.getGrass());
             }
         }
     }

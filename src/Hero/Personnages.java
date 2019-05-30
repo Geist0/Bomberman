@@ -47,7 +47,11 @@ public class Personnages  {
 
     }
 
-    public static boolean isEmpty(String case3,Rectangle rectangle) {
+    public static ImagePattern getGrass() {
+        return grass;
+    }
+
+    public static boolean isEmpty(String case3, Rectangle rectangle) {
         if ( case3 == "UP" ) {
             for ( Rectangle i : Map.getMap() ) {
                 if ( rectangle.getY() - deplacement == i.getY() && rectangle.getX() == i.getX() && i.getFill().equals(grass) ) {
