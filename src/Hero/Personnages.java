@@ -39,8 +39,7 @@ public class Personnages  {
     final static double  deplacement = 64 ;
     static Image terrain4 = ImageLoader.get().load("terrain4.png")  ;
     static ImagePattern terrain4Pattern = new ImagePattern(terrain4);
-    static final Rectangle[] map = Map.getMapRectangle() ;
-    public Personnages() {
+        public Personnages() {
 
         circle = new Circle(20,new ImagePattern(bombe_eau)) ;
         circle.opacityProperty().set(0) ;
@@ -50,7 +49,7 @@ public class Personnages  {
 
     public static boolean isEmpty(String case3,Rectangle rectangle) {
         if ( case3 == "UP" ) {
-            for ( Rectangle i : map ) {
+            for ( Rectangle i : Map.getMap() ) {
                 if ( rectangle.getY() - deplacement == i.getY() && rectangle.getX() == i.getX() && i.getFill().equals(terrain4Pattern) ) {
                     return true ;
                 }
@@ -58,7 +57,7 @@ public class Personnages  {
             return false;
         }
         if ( case3 == "RIGHT" ) {
-            for ( Rectangle i : map) {
+            for ( Rectangle i : Map.getMap()) {
                 if ( rectangle.getX()  + deplacement == i.getX() && rectangle.getY() == i.getY() && i.getFill().equals(terrain4Pattern)) {
                     return true ;
                 }
@@ -66,7 +65,7 @@ public class Personnages  {
             return false ;
         }
         if ( case3 == "LEFT" ) {
-            for ( Rectangle i : map ) {
+            for ( Rectangle i : Map.getMap() ) {
                 if ( rectangle.getX() - deplacement == i.getX() && i.getFill().equals(terrain4Pattern)) {
                     return true ;
                 }
@@ -74,7 +73,7 @@ public class Personnages  {
             return false ;
         }
         else if ( case3 == "DOWN") {
-            for ( Rectangle i : map ) {
+            for ( Rectangle i : Map.getMap() ) {
                 if ( rectangle.getY()+deplacement  == i.getY() && rectangle.getX() == i.getX() && i.getFill().equals(terrain4Pattern)) {
                     return true ;
                 }
