@@ -37,6 +37,8 @@ public class Personnages  {
     static private BooleanProperty enMarcheUp = new SimpleBooleanProperty(true) ;
     static private BooleanProperty enMarcheBombe = new SimpleBooleanProperty(true) ;
     final static double  deplacement = 64 ;
+    static Image terrain4 = ImageLoader.get().load("terrain4.png")  ;
+    static ImagePattern terrain4Pattern = new ImagePattern(terrain4);
     static final Rectangle[] map = Map.getMapRectangle() ;
     public Personnages() {
 
@@ -49,20 +51,15 @@ public class Personnages  {
     public static boolean isEmpty(String case3,Rectangle rectangle) {
         if ( case3 == "UP" ) {
             for ( Rectangle i : map ) {
-                if ( rectangle.getY() - deplacement == i.getY() && rectangle.getX() == i.getX() && i.getFill().equals(Color.GREEN)  ) {
-
+                if ( rectangle.getY() - deplacement == i.getY() && rectangle.getX() == i.getX() && i.getFill().equals(terrain4Pattern) ) {
                     return true ;
-
                 }
-
             }
-
             return false;
         }
         if ( case3 == "RIGHT" ) {
             for ( Rectangle i : map) {
-
-                if ( rectangle.getX()  + deplacement == i.getX() && rectangle.getY() == i.getY() && i.getFill().equals(Color.GREEN) ) {
+                if ( rectangle.getX()  + deplacement == i.getX() && rectangle.getY() == i.getY() && i.getFill().equals(terrain4Pattern)) {
                     return true ;
                 }
             }
@@ -70,19 +67,17 @@ public class Personnages  {
         }
         if ( case3 == "LEFT" ) {
             for ( Rectangle i : map ) {
-                if ( rectangle.getX() - deplacement == i.getX() && i.getFill().equals(Color.GREEN) ) {
+                if ( rectangle.getX() - deplacement == i.getX() && i.getFill().equals(terrain4Pattern)) {
                     return true ;
                 }
-
             }
             return false ;
         }
         else if ( case3 == "DOWN") {
             for ( Rectangle i : map ) {
-                if ( rectangle.getY()+deplacement  == i.getY() && rectangle.getX() == i.getX() && i.getFill().equals(Color.GREEN) ) {
+                if ( rectangle.getY()+deplacement  == i.getY() && rectangle.getX() == i.getX() && i.getFill().equals(terrain4Pattern)) {
                     return true ;
                 }
-
             }
             return false ;
         }
@@ -90,15 +85,11 @@ public class Personnages  {
     }
 
     public static void moveRectangleOnKeyPress(Scene scene, final Rectangle rectangle) {
-
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-
                                   @Override
                                   public void handle(KeyEvent event) {
-
                                       switch (event.getCode()) {
                                           case UP :
-
                                               if ((int)rectangle.getY() > 0 + rectangle.getHeight() && Personnages.enMarcheUp.getValue() && isEmpty("UP",rectangle) ) {
                                                   Timeline timeline = new Timeline();
                                                   Personnages.enMarcheUp.set(false);
@@ -109,7 +100,6 @@ public class Personnages  {
                                                           new KeyFrame(Duration.millis(300), new KeyValue(Personnages.enMarcheUp.asObject(), true)),
                                                           new KeyFrame(Duration.millis(300), new KeyValue(rectangle.yProperty(), (int)rectangle.getY() - deplacement))
                                                   );
-
                                                   timeline.play();
                                               }
                                               break;
