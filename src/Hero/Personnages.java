@@ -37,8 +37,8 @@ public class Personnages  {
     static private BooleanProperty enMarcheUp = new SimpleBooleanProperty(true) ;
     static private BooleanProperty enMarcheBombe = new SimpleBooleanProperty(true) ;
     final static double  deplacement = 64 ;
-    static Image terrain4 = ImageLoader.get().load("terrain4.png")  ;
-    static ImagePattern terrain4Pattern = new ImagePattern(terrain4);
+    static Image grassImage = ImageLoader.get().load("terrain4.png")  ;
+    static ImagePattern grass = new ImagePattern(grassImage);
         public Personnages() {
 
         circle = new Circle(20,new ImagePattern(bombe_eau)) ;
@@ -50,7 +50,7 @@ public class Personnages  {
     public static boolean isEmpty(String case3,Rectangle rectangle) {
         if ( case3 == "UP" ) {
             for ( Rectangle i : Map.getMap() ) {
-                if ( rectangle.getY() - deplacement == i.getY() && rectangle.getX() == i.getX() && i.getFill().equals(terrain4Pattern) ) {
+                if ( rectangle.getY() - deplacement == i.getY() && rectangle.getX() == i.getX() && i.getFill().equals(grass) ) {
                     return true ;
                 }
             }
@@ -58,7 +58,7 @@ public class Personnages  {
         }
         if ( case3 == "RIGHT" ) {
             for ( Rectangle i : Map.getMap()) {
-                if ( rectangle.getX()  + deplacement == i.getX() && rectangle.getY() == i.getY() && i.getFill().equals(terrain4Pattern)) {
+                if ( rectangle.getX()  + deplacement == i.getX() && rectangle.getY() == i.getY() && i.getFill().equals(grass)) {
                     return true ;
                 }
             }
@@ -66,7 +66,7 @@ public class Personnages  {
         }
         if ( case3 == "LEFT" ) {
             for ( Rectangle i : Map.getMap() ) {
-                if ( rectangle.getX() - deplacement == i.getX() && i.getFill().equals(terrain4Pattern)) {
+                if ( rectangle.getX() - deplacement == i.getX() && i.getFill().equals(grass)) {
                     return true ;
                 }
             }
@@ -74,7 +74,7 @@ public class Personnages  {
         }
         else if ( case3 == "DOWN") {
             for ( Rectangle i : Map.getMap() ) {
-                if ( rectangle.getY()+deplacement  == i.getY() && rectangle.getX() == i.getX() && i.getFill().equals(terrain4Pattern)) {
+                if ( rectangle.getY()+deplacement  == i.getY() && rectangle.getX() == i.getX() && i.getFill().equals(grass)) {
                     return true ;
                 }
             }
