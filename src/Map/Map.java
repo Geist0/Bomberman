@@ -24,6 +24,8 @@ public class Map{
     static Image mur6 = ImageLoader.get().load("mur6.png") ;
     static Image mur7 = ImageLoader.get().load("mur7.png") ;
     static Image grass = ImageLoader.get().load("terrain4.png");
+    static Image obstacle = ImageLoader.get().load("obstacle.png");
+    //static Image obstacle =ImageLoader.get().load();
     static final Rectangle[] map = Map.getMapRectangle() ;
 
     static final public Case[] creationCase(Case[] listeCase){
@@ -90,6 +92,9 @@ public class Map{
             }
             if (i.getFill().equals(Color.GREEN)){
                 i.setFill(Personnages.getGrass());
+            }
+            if (i.getFill().equals(Color.RED)){
+                i.setFill(new ImagePattern(obstacle));
             }
         }
     }
