@@ -197,7 +197,7 @@ public class Personnages  {
                                                           new KeyFrame(Duration.millis(1990), new KeyValue(circle.opacityProperty(), 1)),
                                                           new KeyFrame(Duration.millis(2000), new KeyValue(circle.opacityProperty(), 0)),
                                                           new KeyFrame(Duration.millis(1500), new KeyValue(Personnages.enMarcheBombe2.asObject(), true)),
-                                                          new KeyFrame(Duration.millis(2000), e -> bombeExplosion(circle) ),
+                                                          new KeyFrame(Duration.millis(2000), e -> bombeExplosion(circle, sample.Main.getBoss()) ),
                                                           new KeyFrame(Duration.millis(3000), new KeyValue(Personnages.enMarcheBombe.asObject(), true))
 
                                                   );
@@ -216,7 +216,7 @@ public class Personnages  {
                                                           new KeyFrame(Duration.millis(1990), new KeyValue(circle2.opacityProperty(), 1)),
                                                           new KeyFrame(Duration.millis(2000), new KeyValue(circle2.opacityProperty(), 0)),
                                                           new KeyFrame(Duration.millis(1500), new KeyValue(Personnages.enMarcheBombe.asObject(), true)),
-                                                          new KeyFrame(Duration.millis(2000), e -> bombeExplosion(circle2) ),
+                                                          new KeyFrame(Duration.millis(2000), e -> bombeExplosion(circle2,sample.Main.getBoss()) ),
                                                           new KeyFrame(Duration.millis(3000), new KeyValue(Personnages.enMarcheBombe2.asObject(), true))
                                                   );
                                               timeline6.play() ;
@@ -228,7 +228,7 @@ public class Personnages  {
 
     }
 
-    public void bombeExplosion(Circle circle) {
+    public void bombeExplosion(Circle circle,Personnages boss) {
         int cptHaut = 0;
         int cptDroite = 0;
         int cptGauche = 0;
@@ -297,36 +297,93 @@ public class Personnages  {
             }
 
         }
-        if (( circle.getCenterY() + circle.getRadius() == rectangle.getY() && circle.getCenterX() - rectangle.getWidth() / 2 == rectangle.getX()) || circle.getCenterY() + circle.getRadius() + deplacement == rectangle.getY() && circle.getCenterX() - rectangle.getWidth() / 2 == rectangle.getX()
+        if (( circle.getCenterY() + circle.getRadius() == boss.getRectangle().getY() && circle.getCenterX() - rectangle.getWidth() / 2 == boss.getRectangle().getX())
+                || circle.getCenterY() + circle.getRadius() + deplacement == boss.getRectangle().getY() && circle.getCenterX() - rectangle.getWidth() / 2 == boss.getRectangle().getX()
                 && cptBas == 0) {
-            hp-=20 ;
-            setViePersonnage(hp);
+            System.out.println(hp);
+            boss.hp -= this.damages ;
+            boss.setViePersonnage(hp);
+            System.out.println(hp);
+
+        }
+        if ((circle.getCenterY() + circle.getRadius() - deplacement - boss.getRectangle().getHeight() == boss.getRectangle().getY()
+                && circle.getCenterX() - rectangle.getWidth() / 2 == boss.getRectangle().getX()) ||
+                (circle.getCenterY() + circle.getRadius() - (deplacement * 2) - rectangle.getHeight() == boss.getRectangle().getY()
+                        && circle.getCenterX() - rectangle.getWidth() / 2 == boss.getRectangle().getX() && cptHaut == 0 )) {
+            System.out.println(hp);
+
+            boss.hp -= this.damages ;
+            boss.setViePersonnage(hp);
+            System.out.println(hp);
+
+        }
+
+        if (( circle.getCenterX() + rectangle.getWidth() / 2 == boss.getRectangle().getX() && circle.getCenterY() - rectangle.getHeight() + circle.getRadius() == boss.rectangle.getY())
+                || (circle.getCenterX() + rectangle.getWidth() / 2 + deplacement == boss.rectangle.getX()
+                && circle.getCenterY() - rectangle.getHeight() + circle.getRadius() == boss.rectangle.getY()
+                && cptGauche == 0)) {
+            System.out.println(hp);
+
+            boss.hp -= this.damages ;
+            boss.setViePersonnage(hp);
+            System.out.println(hp);
+
+        }
+
+        if ((circle.getCenterX() - rectangle.getWidth() / 2 - deplacement == boss.rectangle.getX()
+                && circle.getCenterY() - boss.rectangle.getHeight() + circle.getRadius() == boss.rectangle.getY())
+                || (circle.getCenterX() - rectangle.getWidth() / 2 - (deplacement * 2) == boss.rectangle.getX()
+                && circle.getCenterY() - rectangle.getHeight() + circle.getRadius() == boss.rectangle.getY()
+              && cptDroite == 0)) {
+            System.out.println(hp);
+
+            boss.hp  -= this.damages ;
+            boss.setViePersonnage(hp);
+            System.out.println(hp);
+
+        }
+
+        if ((circle.getCenterX() - rectangle.getWidth() /2 == boss.rectangle.getX()
+                && circle.getCenterY() - rectangle.getHeight() + circle.getRadius() == boss.rectangle.getY()) ){
+            System.out.println(hp);
+
+            boss.hp -= this.damages ;
+            boss.setViePersonnage(hp);
+            System.out.println(hp);
+
+        }
+
+        if (( circle.getCenterY() + circle.getRadius() == rectangle.getY() && circle.getCenterX() - rectangle.getWidth() / 2 == rectangle.getX())
+                || circle.getCenterY() + circle.getRadius() + deplacement == rectangle.getY() && circle.getCenterX() - rectangle.getWidth() / 2 == rectangle.getX()
+                && cptBas == 0) {
+            this.hp-=this.damages ;
+            this.setViePersonnage(hp);
         }
         if ((circle.getCenterY() + circle.getRadius() - deplacement - rectangle.getHeight() == rectangle.getY()
                 && circle.getCenterX() - rectangle.getWidth() / 2 == rectangle.getX()) ||
                 (circle.getCenterY() + circle.getRadius() - (deplacement * 2) - rectangle.getHeight() == rectangle.getY()
                         && circle.getCenterX() - rectangle.getWidth() / 2 == rectangle.getX() && cptHaut == 0 )) {
-            hp -=damages ;
-            setViePersonnage(hp);
+            this.hp -=this.damages ;
+            this.setViePersonnage(hp);
         }
 
         if (( circle.getCenterX() + rectangle.getWidth() / 2 == rectangle.getX() && circle.getCenterY() - rectangle.getHeight() + circle.getRadius() == rectangle.getY()) || (circle.getCenterX() + rectangle.getWidth() / 2 + deplacement == rectangle.getX()
                 && circle.getCenterY() - rectangle.getHeight() + circle.getRadius() == rectangle.getY()
                 && cptGauche == 0)) {
-            hp -=20 ;
-            setViePersonnage(hp);
+            this.hp -=this.damages ;
+            this.setViePersonnage(hp);
         }
 
         if ((circle.getCenterX() - rectangle.getWidth() / 2 - deplacement == rectangle.getX() && circle.getCenterY() - rectangle.getHeight() + circle.getRadius() == rectangle.getY()) || (circle.getCenterX() - rectangle.getWidth() / 2 - (deplacement * 2) == rectangle.getX()
                 && circle.getCenterY() - rectangle.getHeight() + circle.getRadius() == rectangle.getY()
-              && cptDroite == 0)) {
-            hp-=20 ;
-            setViePersonnage(hp);
+                && cptDroite == 0)) {
+            this.hp-=this.damages ;
+            this.setViePersonnage(hp);
         }
 
         if ((circle.getCenterX() - rectangle.getWidth() /2 == rectangle.getX() && circle.getCenterY() - rectangle.getHeight() + circle.getRadius() == rectangle.getY()) ){
-            hp -=20 ;
-            setViePersonnage(hp);
+            this.hp -=this.damages ;
+            this.setViePersonnage(hp);
         }
 
 
@@ -351,7 +408,7 @@ public class Personnages  {
     }
 
     public void setViePersonnage(int hp) {
-         viePersonnage.setWidth(hp*3);
+         this.viePersonnage.setWidth(hp*3);
     }
 
     public static double getDeplacement() {

@@ -23,10 +23,14 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Main extends Application {
+    private static Personnages boss = new Personnages("poseidon",64*7,64*7,100,20,512,10) ;
+    private static Personnages hero = new Personnages("poseidon",(int)Personnages.getDeplacement(),(int)Personnages.getDeplacement(),100,20,20,10)  ;
+
+
     @Override
 
     public void start(Stage primaryStage) {
-        Personnages hero = new Personnages("poseidon",(int)Personnages.getDeplacement(),(int)Personnages.getDeplacement(),100,20,20,10)  ;
+
 
 
 
@@ -43,6 +47,10 @@ public class Main extends Application {
         root.getChildren().add(hero.getCircle()) ;
         root.getChildren().add(hero.getCircle2()) ;
         root.getChildren().add(hero.getViePersonnage());
+        root.getChildren().add(boss.getRectangle()) ;
+        root.getChildren().add(boss.getCircle()) ;
+        root.getChildren().add(boss.getCircle2()) ;
+        root.getChildren().add(boss.getViePersonnage());
         final Scene scene = new Scene(root, 832, 832);
         primaryStage.setScene(scene) ;
         hero.moveRectangleOnKeyPress(scene) ;
@@ -53,7 +61,9 @@ public class Main extends Application {
 
     }
 
-
+    public static Personnages getBoss() {
+        return boss ;
+    }
 
 
 
