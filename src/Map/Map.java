@@ -16,6 +16,7 @@ public class Map{
         return listeCase;
     }
     static Image mur0 = ImageLoader.get().load("mur0.png") ;
+    private static ImagePattern mur0Pattern = new ImagePattern(mur0) ;
     static Image mur1 = ImageLoader.get().load("mur1.png") ;
     static Image mur2 = ImageLoader.get().load("mur2.png") ;
     static Image mur3 = ImageLoader.get().load("mur3.png") ;
@@ -24,8 +25,8 @@ public class Map{
     static Image mur6 = ImageLoader.get().load("mur6.png") ;
     static Image mur7 = ImageLoader.get().load("mur7.png") ;
     static Image grass = ImageLoader.get().load("terrain4.png");
-    static Image obstacle = ImageLoader.get().load("obstacle.png");
-    //static Image obstacle =ImageLoader.get().load();
+    private static Image obstacle = ImageLoader.get().load("obstacle.png");
+    private static ImagePattern obstaclePattern = new ImagePattern(obstacle) ;
     static final Rectangle[] map = Map.getMapRectangle() ;
 
     static final public Case[] creationCase(Case[] listeCase){
@@ -88,13 +89,13 @@ public class Map{
                 i.setFill(new ImagePattern(mur6));
             }
             else if(i.getFill().equals(Color.BLACK)){
-                i.setFill(new ImagePattern(mur0));
+                i.setFill(mur0Pattern);
             }
             if (i.getFill().equals(Color.GREEN)){
                 i.setFill(Personnages.getGrass());
             }
             if (i.getFill().equals(Color.RED)){
-                i.setFill(new ImagePattern(obstacle));
+                i.setFill(obstaclePattern);
             }
         }
     }
@@ -102,4 +103,9 @@ public class Map{
     public static Rectangle[] getMap() {
         return map ;
     }
+
+    public static ImagePattern getObstacle() {return obstaclePattern ;}
+    public static ImagePattern getMur0() {return mur0Pattern ;}
+
 }
+

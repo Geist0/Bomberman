@@ -23,7 +23,7 @@ import java.security.Key;
 
 public class Personnages  {
     private String nom;
-    private int hp ;
+    static private int hp ;
     private static Circle circle ;
     static Image poseidonhaut1 = ImageLoader.get().load("poseidonhaut1.png") ;
     static Image poseidonhaut2 = ImageLoader.get().load("poseidonhaut2.png") ;
@@ -34,15 +34,29 @@ public class Personnages  {
     static Image poseidongauche1 = ImageLoader.get().load("poseidongauche1.png") ;
     static Image poseidongauche2 = ImageLoader.get().load("poseidongauche2.png") ;
     static Image bombe_eau = ImageLoader.get().load("bombe_eau.png")  ;
+    static private Rectangle viePersonnage = new Rectangle() ;
     static private BooleanProperty enMarcheUp = new SimpleBooleanProperty(true) ;
     static private BooleanProperty enMarcheBombe = new SimpleBooleanProperty(true) ;
     final static double  deplacement = 64 ;
     static Image grassImage = ImageLoader.get().load("terrain4.png")  ;
     static ImagePattern grass = new ImagePattern(grassImage);
+    static private BooleanProperty bombeActive = new SimpleBooleanProperty(true) ;
+    static private Rectangle rectangle = new Rectangle(15, 15, Personnages.getDeplacement(), Personnages.getDeplacement()) ;
+
         public Personnages() {
 
-        circle = new Circle(20,new ImagePattern(bombe_eau)) ;
+        circle = new Circle(30,new ImagePattern(bombe_eau)) ;
         circle.opacityProperty().set(0) ;
+        rectangle.setX(Personnages.getDeplacement()) ;
+        rectangle.setY(Personnages.getDeplacement()) ;
+        rectangle.setFill(new ImagePattern(poseidonbas1));
+        hp=100 ;
+        viePersonnage.setX(20);
+        viePersonnage.setY(10);
+        viePersonnage.setOpacity(0.7);
+        viePersonnage.setWidth(hp*3);
+        viePersonnage.setHeight(30);
+        viePersonnage.setFill(Color.GREEN);
 
 
     }
@@ -70,7 +84,7 @@ public class Personnages  {
         }
         if ( case3 == "LEFT" ) {
             for ( Rectangle i : Map.getMap() ) {
-                if ( rectangle.getX() - deplacement == i.getX() && i.getFill().equals(grass)) {
+                if ( rectangle.getX() - deplacement == i.getX() && rectangle.getY() == i.getY() && i.getFill().equals(grass)) {
                     return true ;
                 }
             }
@@ -165,7 +179,9 @@ public class Personnages  {
                                                           new KeyFrame(Duration.ZERO, new KeyValue(Personnages.circle.opacityProperty(), 1)),
                                                           new KeyFrame(Duration.millis(1990), new KeyValue(Personnages.circle.opacityProperty(), 1)),
                                                           new KeyFrame(Duration.millis(2000), new KeyValue(Personnages.circle.opacityProperty(), 0)),
+                                                          new KeyFrame(Duration.millis(2000), e -> bombeExplosion() ),
                                                           new KeyFrame(Duration.millis(3000), new KeyValue(Personnages.enMarcheBombe.asObject(), true))
+
                                                   );
                                                   timeline5.play();
                                               }
@@ -176,12 +192,131 @@ public class Personnages  {
 
     }
 
+    public static void bombeExplosion() {
+        int cptHaut = 0;
+        int cptDroite = 0;
+        int cptGauche = 0;
+        int cptBas = 0;
+        for (Rectangle i : Map.getMap()) {
+            if (Personnages.circle.getCenterY() + Personnages.circle.getRadius() == i.getY() && Personnages.circle.getCenterX() - i.getWidth() / 2 == i.getX()
+                    && i.getFill() == Map.getObstacle()) {
+                i.setFill(grass);
+                cptBas++;
+            } else if (Personnages.circle.getCenterY() + Personnages.circle.getRadius() == i.getY() && Personnages.circle.getCenterX() - i.getWidth() / 2 == i.getX()
+                    && i.getFill() == Map.getMur0()) {
+                cptBas++;
+            }
+
+            if (Personnages.circle.getCenterY() + Personnages.circle.getRadius() - deplacement - i.getHeight() == i.getY() && Personnages.circle.getCenterX() - i.getWidth() / 2 == i.getX() && i.getFill() == Map.getObstacle()) {
+                i.setFill(grass);
+                cptHaut++;
+            } else if (Personnages.circle.getCenterY() + Personnages.circle.getRadius() - deplacement - i.getHeight() == i.getY()
+                    && Personnages.circle.getCenterX() - i.getWidth() / 2 == i.getX() && i.getFill() == Map.getMur0()) {
+                cptHaut++;
+            }
+
+            if (Personnages.circle.getCenterX() + i.getWidth() / 2 == i.getX() && Personnages.circle.getCenterY() - i.getHeight() + Personnages.circle.getRadius() == i.getY() && i.getFill() == Map.getObstacle()) {
+                i.setFill(grass);
+                cptGauche++;
+            } else if (Personnages.circle.getCenterX() + i.getWidth() / 2 == i.getX()
+                    && Personnages.circle.getCenterY() - i.getHeight() + Personnages.circle.getRadius() == i.getY() && i.getFill() == Map.getMur0()) {
+                cptGauche++;
+            }
+
+            if (Personnages.circle.getCenterX() - i.getWidth() / 2 - deplacement == i.getX() && Personnages.circle.getCenterY() - i.getHeight() + Personnages.circle.getRadius() == i.getY() && i.getFill() == Map.getObstacle()) {
+                i.setFill(grass);
+                cptDroite++;
+            } else if (Personnages.circle.getCenterX() - i.getWidth() / 2 - deplacement == i.getX()
+                    && Personnages.circle.getCenterY() - i.getHeight() + Personnages.circle.getRadius() == i.getY() && i.getFill() == Map.getMur0()) {
+                cptDroite++;
+            }
+
+
+        }
+        for (Rectangle i : Map.getMap()) {
+            if (Personnages.circle.getCenterY() + Personnages.circle.getRadius() + deplacement == i.getY() && Personnages.circle.getCenterX() - i.getWidth() / 2 == i.getX()
+                    && i.getFill() == Map.getObstacle() && cptBas == 0) {
+                i.setFill(grass);
+
+            }
+
+            if (Personnages.circle.getCenterY() + Personnages.circle.getRadius() - (deplacement * 2) - i.getHeight() == i.getY()
+                    && Personnages.circle.getCenterX() - i.getWidth() / 2 == i.getX() && i.getFill() == Map.getObstacle() && cptHaut == 0) {
+                i.setFill(grass);
+
+            }
+
+            if (Personnages.circle.getCenterX() + i.getWidth() / 2 + deplacement == i.getX()
+                    && Personnages.circle.getCenterY() - i.getHeight() + Personnages.circle.getRadius() == i.getY()
+                    && i.getFill() == Map.getObstacle() && cptGauche == 0) {
+                i.setFill(grass);
+
+            }
+
+            if (Personnages.circle.getCenterX() - i.getWidth() / 2 - (deplacement * 2) == i.getX()
+                    && Personnages.circle.getCenterY() - i.getHeight() + Personnages.circle.getRadius() == i.getY()
+                    && i.getFill() == Map.getObstacle() && cptDroite == 0) {
+                i.setFill(grass);
+            }
+
+        }
+        if ((Personnages.circle.getCenterY() + Personnages.circle.getRadius() == rectangle.getY() && Personnages.circle.getCenterX() - rectangle.getWidth() / 2 == rectangle.getX()) || Personnages.circle.getCenterY() + Personnages.circle.getRadius() + deplacement == rectangle.getY() && Personnages.circle.getCenterX() - rectangle.getWidth() / 2 == rectangle.getX()
+                && cptBas == 0) {
+            hp-=20 ;
+            Personnages.setViePersonnage(hp);
+        }
+        if ((Personnages.circle.getCenterY() + Personnages.circle.getRadius() - deplacement - rectangle.getHeight() == rectangle.getY()
+                && Personnages.circle.getCenterX() - rectangle.getWidth() / 2 == rectangle.getX()) ||
+                (Personnages.circle.getCenterY() + Personnages.circle.getRadius() - (deplacement * 2) - rectangle.getHeight() == rectangle.getY()
+                        && Personnages.circle.getCenterX() - rectangle.getWidth() / 2 == rectangle.getX() && cptHaut == 0 )) {
+            hp -=20 ;
+            Personnages.setViePersonnage(hp);
+        }
+
+        if ((Personnages.circle.getCenterX() + rectangle.getWidth() / 2 == rectangle.getX() && Personnages.circle.getCenterY() - rectangle.getHeight() + Personnages.circle.getRadius() == rectangle.getY()) || (Personnages.circle.getCenterX() + rectangle.getWidth() / 2 + deplacement == rectangle.getX()
+                && Personnages.circle.getCenterY() - rectangle.getHeight() + Personnages.circle.getRadius() == rectangle.getY()
+                && cptGauche == 0)) {
+            hp -=20 ;
+            Personnages.setViePersonnage(hp);
+        }
+
+        if ((Personnages.circle.getCenterX() - rectangle.getWidth() / 2 - deplacement == rectangle.getX() && Personnages.circle.getCenterY() - rectangle.getHeight() + Personnages.circle.getRadius() == rectangle.getY()) || (Personnages.circle.getCenterX() - rectangle.getWidth() / 2 - (deplacement * 2) == rectangle.getX()
+                && Personnages.circle.getCenterY() - rectangle.getHeight() + Personnages.circle.getRadius() == rectangle.getY()
+              && cptDroite == 0)) {
+            hp-=20 ;
+            Personnages.setViePersonnage(hp);
+        }
+
+        if ((Personnages.circle.getCenterX() - rectangle.getWidth() /2 == rectangle.getX() && Personnages.circle.getCenterY() - rectangle.getHeight() + Personnages.circle.getRadius() == rectangle.getY()) ){
+            hp -=20 ;
+            Personnages.setViePersonnage(hp);
+        }
+
+
+
+
+        }
+
+
+
     public String getNom() {
         return nom;
     }
 
-    public int getHp() {
+    public static int getHp() {
         return hp;
+    }
+
+    public static void setHp(int hp) {
+            hp = hp ;
+    }
+
+    public static Rectangle getViePersonnage() {
+            return viePersonnage ;
+    }
+
+    public static void setViePersonnage(int hp) {
+         viePersonnage.setWidth(hp*3);
     }
 
     public static double getDeplacement() {
@@ -191,5 +326,7 @@ public class Personnages  {
     public static Circle getCircle() {
         return circle;
      }
+
+     public static Rectangle getRectangle() { return rectangle ;}
 
 }
