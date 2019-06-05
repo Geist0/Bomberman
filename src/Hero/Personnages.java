@@ -1,12 +1,10 @@
 package Hero;
 import Map.Map;
-import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.EventHandler;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
@@ -17,26 +15,14 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import javafx.animation.KeyValue ;
 
-import javax.swing.text.StyledEditorKit;
-import java.io.File;
-import java.security.Key;
 
 public class Personnages  {
     private String nom;
     private int hp ;
     private Circle circle ;
     private Circle circle2 ;
-    Image poseidonhaut1 = ImageLoader.get().load("poseidonhaut1.png") ;
-    Image poseidonhaut2 = ImageLoader.get().load("poseidonhaut2.png") ;
-    Image poseidondroite1 = ImageLoader.get().load("poseidondroite1.png") ;
-    Image poseidondroite2 = ImageLoader.get().load("poseidondroite2.png") ;
-    Image poseidonbas1 = ImageLoader.get().load("poseidonbas1.png") ;
-    Image poseidonbas2 = ImageLoader.get().load("poseidonbas2.png") ;
-    Image poseidongauche1 = ImageLoader.get().load("poseidongauche1.png") ;
-    Image poseidongauche2 = ImageLoader.get().load("poseidongauche2.png") ;
-    Image bombe_eau = ImageLoader.get().load("bombe_eau.png")  ;
-    ImagePattern bomb_eauPattern = new ImagePattern(bombe_eau) ;
-
+    private ImagePattern[] sprite;
+    private int damages;
     private Rectangle viePersonnage = new Rectangle() ;
     static private BooleanProperty enMarcheUp = new SimpleBooleanProperty(true) ;
     static private BooleanProperty enMarcheBombe = new SimpleBooleanProperty(true) ;
@@ -47,25 +33,48 @@ public class Personnages  {
     static private BooleanProperty bombeActive = new SimpleBooleanProperty(true) ;
     private Rectangle rectangle = new Rectangle(15, 15, Personnages.getDeplacement(), Personnages.getDeplacement()) ;
 
-        public Personnages() {
-
-            circle = new Circle(30,bomb_eauPattern) ;
-            circle2 = new Circle(30,bomb_eauPattern) ;
+        public Personnages(String nom,int caseX,int caseY,int hp, int damages,int vieX,int vieY) {
+            sprite= new ImagePattern[9];
+            this.nom=nom;
+            creerImage(nom);
+            circle = new Circle(30,sprite[8]) ;
+            circle2 = new Circle(30,sprite[8]) ;
             circle.opacityProperty().set(0) ;
             circle2.opacityProperty().set(0) ;
-            rectangle.setX(Personnages.getDeplacement()) ;
-            rectangle.setY(Personnages.getDeplacement()) ;
-            rectangle.setFill(new ImagePattern(poseidonbas1));
-
-            hp=100 ;
-            viePersonnage.setX(20);
-            viePersonnage.setY(10);
+            rectangle.setX(caseX) ;
+            rectangle.setY(caseY) ;
+            rectangle.setFill(sprite[4]);
+            this.damages=damages;
+            this.hp=hp ;
+            viePersonnage.setX(vieX);
+            viePersonnage.setY(vieY);
             viePersonnage.setOpacity(0.7);
             viePersonnage.setWidth(hp*3);
             viePersonnage.setHeight(30);
             viePersonnage.setFill(Color.GREEN);
 
 
+    }
+    public void creerImage(String nom){
+        Image ihaut1 = ImageLoader.get().load(nom+"haut1.png") ;
+        Image ihaut2 = ImageLoader.get().load(nom+"haut2.png") ;
+        Image idroite1 = ImageLoader.get().load(nom+"droite1.png") ;
+        Image idroite2 = ImageLoader.get().load(nom+"droite2.png") ;
+        Image ibas1 = ImageLoader.get().load(nom+"bas1.png") ;
+        Image ibas2 = ImageLoader.get().load(nom+"bas2.png") ;
+        Image igauche1 = ImageLoader.get().load(nom+"gauche1.png") ;
+        Image igauche2 = ImageLoader.get().load(nom+"gauche2.png") ;
+        Image ibombe = ImageLoader.get().load("bombe_eau.png")  ;
+
+        sprite[0]=new ImagePattern(ihaut1);
+        sprite[1]=new ImagePattern(ihaut2);
+        sprite[2]=new ImagePattern(idroite1);
+        sprite[3]=new ImagePattern(idroite2);
+        sprite[4]=new ImagePattern(ibas1);
+        sprite[5]=new ImagePattern(ibas2);
+        sprite[6]=new ImagePattern(igauche1);
+        sprite[7]=new ImagePattern(igauche2);
+        sprite[8]=new ImagePattern(ibombe);
     }
 
     public static ImagePattern getGrass() {
@@ -114,29 +123,29 @@ public class Personnages  {
                                   public void handle(KeyEvent event) {
                                       switch (event.getCode()) {
                                           case UP :
-                                              if (rectangle.getY() > 0 + rectangle.getHeight() && Personnages.enMarcheUp.getValue() && isEmpty("UP",rectangle) ) {
+                                              if (Personnages.this.rectangle.getY() > 0 + Personnages.this.rectangle.getHeight() && Personnages.enMarcheUp.getValue() && isEmpty("UP", Personnages.this.rectangle) ) {
                                                   Timeline timeline = new Timeline();
                                                   Personnages.enMarcheUp.set(false);
                                                   timeline.getKeyFrames().addAll(
-                                                          new KeyFrame(Duration.ZERO, new KeyValue(rectangle.fillProperty(), new ImagePattern(poseidonhaut1))),
-                                                          new KeyFrame(Duration.millis(150), new KeyValue(rectangle.fillProperty(), new ImagePattern(poseidonhaut2))),
-                                                          new KeyFrame(Duration.millis(300), new KeyValue(rectangle.fillProperty(), new ImagePattern(poseidonhaut1))),
+                                                          new KeyFrame(Duration.ZERO, new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[0])),
+                                                          new KeyFrame(Duration.millis(150), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[1])),
+                                                          new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[0])),
                                                           new KeyFrame(Duration.millis(300), new KeyValue(Personnages.enMarcheUp.asObject(), true)),
-                                                          new KeyFrame(Duration.millis(300), new KeyValue(rectangle.yProperty(), (int)rectangle.getY() - deplacement))
+                                                          new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.yProperty(), (int) Personnages.this.rectangle.getY() - deplacement))
                                                   );
                                                   timeline.play();
                                               }
                                               break;
                                           case RIGHT:
-                                              if (rectangle.getX() < scene.getWidth() - rectangle.getWidth() - deplacement && Personnages.enMarcheUp.getValue() && isEmpty("RIGHT",rectangle)) {
+                                              if (Personnages.this.rectangle.getX() < scene.getWidth() - Personnages.this.rectangle.getWidth() - deplacement && Personnages.enMarcheUp.getValue() && isEmpty("RIGHT", Personnages.this.rectangle)) {
                                                   Timeline timeline2 = new Timeline();
                                                   Personnages.enMarcheUp.set(false);
                                                   timeline2.getKeyFrames().addAll(
-                                                          new KeyFrame(Duration.ZERO, new KeyValue(rectangle.fillProperty(), new ImagePattern(poseidondroite1))),
-                                                          new KeyFrame(Duration.millis(150), new KeyValue(rectangle.fillProperty(), new ImagePattern(poseidondroite2))),
-                                                          new KeyFrame(Duration.millis(300), new KeyValue(rectangle.fillProperty(), new ImagePattern(poseidondroite1))),
+                                                          new KeyFrame(Duration.ZERO, new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[2] )),
+                                                          new KeyFrame(Duration.millis(150), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[3])),
+                                                          new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[2])),
                                                           new KeyFrame(Duration.millis(300), new KeyValue(Personnages.enMarcheUp.asObject(), true)),
-                                                          new KeyFrame(Duration.millis(300), new KeyValue(rectangle.xProperty(), rectangle.getX() + deplacement))
+                                                          new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.xProperty(), Personnages.this.rectangle.getX() + deplacement))
                                                   );
                                                   timeline2.play();
                                               }
@@ -144,14 +153,14 @@ public class Personnages  {
                                               break;
                                           case DOWN:
 
-                                              if (rectangle.getY() < scene.getHeight() - rectangle.getHeight() - deplacement && Personnages.enMarcheUp.getValue() && isEmpty("DOWN",rectangle)) {
+                                              if (Personnages.this.rectangle.getY() < scene.getHeight() - Personnages.this.rectangle.getHeight() - deplacement && Personnages.enMarcheUp.getValue() && isEmpty("DOWN", Personnages.this.rectangle)) {
                                                   Timeline timeline3 = new Timeline();
                                                   Personnages.enMarcheUp.set(false);
                                                   timeline3.getKeyFrames().addAll(
-                                                          new KeyFrame(Duration.ZERO, new KeyValue(rectangle.fillProperty(), new ImagePattern(poseidonbas1))),
-                                                          new KeyFrame(Duration.millis(150), new KeyValue(rectangle.fillProperty(), new ImagePattern(poseidonbas2))),
-                                                          new KeyFrame(Duration.millis(300), new KeyValue(rectangle.fillProperty(), new ImagePattern(poseidonbas1))),
-                                                          new KeyFrame(Duration.millis(300), new KeyValue(rectangle.yProperty(), rectangle.getY() + deplacement)),
+                                                          new KeyFrame(Duration.ZERO, new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[4])),
+                                                          new KeyFrame(Duration.millis(150), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[5])),
+                                                          new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[4])),
+                                                          new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.yProperty(), Personnages.this.rectangle.getY() + deplacement)),
                                                           new KeyFrame(Duration.millis(300), new KeyValue(Personnages.enMarcheUp.asObject(), true))
                                                   );
                                                   timeline3.play();
@@ -160,14 +169,14 @@ public class Personnages  {
                                               }
                                               break;
                                           case LEFT:
-                                              if (rectangle.getX() > 0 + deplacement && Personnages.enMarcheUp.getValue() && isEmpty("LEFT",rectangle)) {
+                                              if (Personnages.this.rectangle.getX() > 0 + deplacement && Personnages.enMarcheUp.getValue() && isEmpty("LEFT", Personnages.this.rectangle)) {
                                                   Timeline timeline4 = new Timeline();
                                                   Personnages.enMarcheUp.set(false);
                                                   timeline4.getKeyFrames().addAll(
-                                                          new KeyFrame(Duration.ZERO, new KeyValue(rectangle.fillProperty(), new ImagePattern(poseidongauche1))),
-                                                          new KeyFrame(Duration.millis(150), new KeyValue(rectangle.fillProperty(), new ImagePattern(poseidongauche2))),
-                                                          new KeyFrame(Duration.millis(300), new KeyValue(rectangle.fillProperty(), new ImagePattern(poseidongauche1))),
-                                                          new KeyFrame(Duration.millis(300), new KeyValue(rectangle.xProperty(), (rectangle.getX() - deplacement))),
+                                                          new KeyFrame(Duration.ZERO, new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[6])),
+                                                          new KeyFrame(Duration.millis(150), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[7])),
+                                                          new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[6])),
+                                                          new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.xProperty(), (Personnages.this.rectangle.getX() - deplacement))),
                                                           new KeyFrame(Duration.millis(300), new KeyValue(Personnages.enMarcheUp.asObject(), true))
                                                   );
                                                   timeline4.play();
@@ -176,8 +185,8 @@ public class Personnages  {
                                               break;
                                           case E:
                                               if (Personnages.enMarcheBombe.getValue() && Personnages.enMarcheUp.getValue()) {
-                                                  circle.setCenterX(rectangle.getX() + rectangle.getWidth()/2);
-                                                  circle.setCenterY(rectangle.getY() + rectangle.getHeight()-circle.getRadius());
+                                                  circle.setCenterX(Personnages.this.rectangle.getX() + Personnages.this.rectangle.getWidth()/2);
+                                                  circle.setCenterY(Personnages.this.rectangle.getY() + Personnages.this.rectangle.getHeight()-circle.getRadius());
                                                   circle.opacityProperty().set(1);
                                                   Personnages.enMarcheBombe.set(false);
                                                   Personnages.enMarcheBombe2.set(false);
@@ -195,8 +204,8 @@ public class Personnages  {
                                                   timeline5.play();
                                               }
                                               if (Personnages.enMarcheBombe2.getValue() && Personnages.enMarcheUp.getValue()) {
-                                                  circle2.setCenterX(rectangle.getX() + rectangle.getWidth()/2);
-                                                  circle2.setCenterY(rectangle.getY() + rectangle.getHeight()-circle.getRadius());
+                                                  circle2.setCenterX(Personnages.this.rectangle.getX() + Personnages.this.rectangle.getWidth()/2);
+                                                  circle2.setCenterY(Personnages.this.rectangle.getY() + Personnages.this.rectangle.getHeight()-circle.getRadius());
                                                   circle2.opacityProperty().set(1);
                                                   Personnages.enMarcheBombe.set(false);
                                                   Personnages.enMarcheBombe2.set(false);
@@ -297,7 +306,7 @@ public class Personnages  {
                 && circle.getCenterX() - rectangle.getWidth() / 2 == rectangle.getX()) ||
                 (circle.getCenterY() + circle.getRadius() - (deplacement * 2) - rectangle.getHeight() == rectangle.getY()
                         && circle.getCenterX() - rectangle.getWidth() / 2 == rectangle.getX() && cptHaut == 0 )) {
-            hp -=20 ;
+            hp -=damages ;
             setViePersonnage(hp);
         }
 
@@ -324,9 +333,6 @@ public class Personnages  {
 
 
         }
-
-
-
 
     public String getNom() {
         return nom;

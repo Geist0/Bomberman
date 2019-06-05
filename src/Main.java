@@ -26,7 +26,7 @@ public class Main extends Application {
     @Override
 
     public void start(Stage primaryStage) {
-        Personnages hero = new Personnages()  ;
+        Personnages hero = new Personnages("poseidon",(int)Personnages.getDeplacement(),(int)Personnages.getDeplacement(),100,20,20,10)  ;
 
 
 
@@ -42,6 +42,7 @@ public class Main extends Application {
         root.getChildren().add(hero.getRectangle()) ;
         root.getChildren().add(hero.getCircle()) ;
         root.getChildren().add(hero.getCircle2()) ;
+        root.getChildren().add(hero.getViePersonnage());
         final Scene scene = new Scene(root, 832, 832);
         primaryStage.setScene(scene) ;
         hero.moveRectangleOnKeyPress(scene) ;
