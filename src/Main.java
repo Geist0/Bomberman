@@ -39,12 +39,12 @@ public class Main extends Application {
 
         root.getChildren().addAll(Map.getMap());
 
-        root.getChildren().add(Personnages.getRectangle()) ;
-        root.getChildren().add(Personnages.getCircle()) ;
-        root.getChildren().add(Personnages.getViePersonnage());
+        root.getChildren().add(hero.getRectangle()) ;
+        root.getChildren().add(hero.getCircle()) ;
+        root.getChildren().add(hero.getCircle2()) ;
         final Scene scene = new Scene(root, 832, 832);
         primaryStage.setScene(scene) ;
-        Personnages.moveRectangleOnKeyPress(scene,Personnages.getRectangle()) ;
+        hero.moveRectangleOnKeyPress(scene) ;
 
         primaryStage.show();
 
