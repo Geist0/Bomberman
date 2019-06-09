@@ -1,43 +1,21 @@
-package sample ;
-import Hero.* ;
-import Map.* ;
-import javafx.application.Application;
-import javafx.beans.binding.DoubleBinding;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.*;
-import javafx.stage.Stage;
-import javafx.event.EventHandler;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.Group;
-import javafx.scene.image.ImageView;
+package Main;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import Hero.Personnages;
+import Hero.Bot;
+import Map.Map;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class Main extends Application {
     private static Personnages boss = new Personnages("poseidon",64*7,64*7,100,20,512,10) ;
     private static Personnages hero = new Personnages("poseidon",(int)Personnages.getDeplacement(),(int)Personnages.getDeplacement(),100,20,20,10)  ;
 
-
-    @Override
-
     public void start(Stage primaryStage) {
-
-
-
-
 
         Pane root = new Pane() ;
         primaryStage.setTitle("Age of Mythorman of Mythology 3");
-
 
         Map.putMapImage();
 
@@ -53,24 +31,18 @@ public class Main extends Application {
         root.getChildren().add(boss.getViePersonnage());
         final Scene scene = new Scene(root, 832, 832);
         primaryStage.setScene(scene) ;
+        System.out.println("okok");
+        Threads ia=new Threads();
+        ia.start();
+        System.out.println("okok2");
         hero.moveRectangleOnKeyPress(scene) ;
 
         primaryStage.show();
 
-
-
     }
 
-    public static Personnages getBoss() {
-        return boss ;
-    }
-
-
-
-
-
-
-
+    public static Personnages getBoss() {return boss ;}
+    public static Personnages getHero() {return hero;}
 
 
     public static void main(String[] args) {

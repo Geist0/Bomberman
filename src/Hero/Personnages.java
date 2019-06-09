@@ -1,5 +1,6 @@
 package Hero;
 import Map.Map;
+import Main.Main;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.BooleanProperty;
@@ -32,6 +33,7 @@ public class Personnages  {
     static ImagePattern grass = new ImagePattern(grassImage);
     static private BooleanProperty bombeActive = new SimpleBooleanProperty(true) ;
     private Rectangle rectangle = new Rectangle(15, 15, Personnages.getDeplacement(), Personnages.getDeplacement()) ;
+    private boolean vivant;
 
         public Personnages(String nom,int caseX,int caseY,int hp, int damages,int vieX,int vieY) {
             sprite= new ImagePattern[9];
@@ -52,6 +54,7 @@ public class Personnages  {
             viePersonnage.setWidth(hp*3);
             viePersonnage.setHeight(30);
             viePersonnage.setFill(Color.GREEN);
+            this.vivant=true;
 
 
     }
@@ -119,111 +122,111 @@ public class Personnages  {
 
     public void  moveRectangleOnKeyPress(Scene scene) {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-                                  @Override
-                                  public void handle(KeyEvent event) {
-                                      switch (event.getCode()) {
-                                          case UP :
-                                              if (Personnages.this.rectangle.getY() > 0 + Personnages.this.rectangle.getHeight() && Personnages.enMarcheUp.getValue() && isEmpty("UP", Personnages.this.rectangle) ) {
-                                                  Timeline timeline = new Timeline();
-                                                  Personnages.enMarcheUp.set(false);
-                                                  timeline.getKeyFrames().addAll(
-                                                          new KeyFrame(Duration.ZERO, new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[0])),
-                                                          new KeyFrame(Duration.millis(150), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[1])),
-                                                          new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[0])),
-                                                          new KeyFrame(Duration.millis(300), new KeyValue(Personnages.enMarcheUp.asObject(), true)),
-                                                          new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.yProperty(), (int) Personnages.this.rectangle.getY() - deplacement))
-                                                  );
-                                                  timeline.play();
-                                              }
-                                              break;
-                                          case RIGHT:
-                                              if (Personnages.this.rectangle.getX() < scene.getWidth() - Personnages.this.rectangle.getWidth() - deplacement && Personnages.enMarcheUp.getValue() && isEmpty("RIGHT", Personnages.this.rectangle)) {
-                                                  Timeline timeline2 = new Timeline();
-                                                  Personnages.enMarcheUp.set(false);
-                                                  timeline2.getKeyFrames().addAll(
-                                                          new KeyFrame(Duration.ZERO, new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[2] )),
-                                                          new KeyFrame(Duration.millis(150), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[3])),
-                                                          new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[2])),
-                                                          new KeyFrame(Duration.millis(300), new KeyValue(Personnages.enMarcheUp.asObject(), true)),
-                                                          new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.xProperty(), Personnages.this.rectangle.getX() + deplacement))
-                                                  );
-                                                  timeline2.play();
-                                              }
+              @Override
+              public void handle(KeyEvent event) {
+                  switch (event.getCode()) {
+                      case UP :
+                          if (Personnages.this.rectangle.getY() > 0 + Personnages.this.rectangle.getHeight() && Personnages.enMarcheUp.getValue() && isEmpty("UP", Personnages.this.rectangle) ) {
+                              Timeline timeline = new Timeline();
+                              Personnages.enMarcheUp.set(false);
+                              timeline.getKeyFrames().addAll(
+                                      new KeyFrame(Duration.ZERO, new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[0])),
+                                      new KeyFrame(Duration.millis(150), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[1])),
+                                      new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[0])),
+                                      new KeyFrame(Duration.millis(300), new KeyValue(Personnages.enMarcheUp.asObject(), true)),
+                                      new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.yProperty(), (int) Personnages.this.rectangle.getY() - deplacement))
+                              );
+                              timeline.play();
+                          }
+                          break;
+                      case RIGHT:
+                          if (Personnages.this.rectangle.getX() < scene.getWidth() - Personnages.this.rectangle.getWidth() - deplacement && Personnages.enMarcheUp.getValue() && isEmpty("RIGHT", Personnages.this.rectangle)) {
+                              Timeline timeline2 = new Timeline();
+                              Personnages.enMarcheUp.set(false);
+                              timeline2.getKeyFrames().addAll(
+                                      new KeyFrame(Duration.ZERO, new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[2] )),
+                                      new KeyFrame(Duration.millis(150), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[3])),
+                                      new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[2])),
+                                      new KeyFrame(Duration.millis(300), new KeyValue(Personnages.enMarcheUp.asObject(), true)),
+                                      new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.xProperty(), Personnages.this.rectangle.getX() + deplacement))
+                              );
+                              timeline2.play();
+                          }
 
-                                              break;
-                                          case DOWN:
+                          break;
+                      case DOWN:
 
-                                              if (Personnages.this.rectangle.getY() < scene.getHeight() - Personnages.this.rectangle.getHeight() - deplacement && Personnages.enMarcheUp.getValue() && isEmpty("DOWN", Personnages.this.rectangle)) {
-                                                  Timeline timeline3 = new Timeline();
-                                                  Personnages.enMarcheUp.set(false);
-                                                  timeline3.getKeyFrames().addAll(
-                                                          new KeyFrame(Duration.ZERO, new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[4])),
-                                                          new KeyFrame(Duration.millis(150), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[5])),
-                                                          new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[4])),
-                                                          new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.yProperty(), Personnages.this.rectangle.getY() + deplacement)),
-                                                          new KeyFrame(Duration.millis(300), new KeyValue(Personnages.enMarcheUp.asObject(), true))
-                                                  );
-                                                  timeline3.play();
+                          if (Personnages.this.rectangle.getY() < scene.getHeight() - Personnages.this.rectangle.getHeight() - deplacement && Personnages.enMarcheUp.getValue() && isEmpty("DOWN", Personnages.this.rectangle)) {
+                              Timeline timeline3 = new Timeline();
+                              Personnages.enMarcheUp.set(false);
+                              timeline3.getKeyFrames().addAll(
+                                      new KeyFrame(Duration.ZERO, new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[4])),
+                                      new KeyFrame(Duration.millis(150), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[5])),
+                                      new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[4])),
+                                      new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.yProperty(), Personnages.this.rectangle.getY() + deplacement)),
+                                      new KeyFrame(Duration.millis(300), new KeyValue(Personnages.enMarcheUp.asObject(), true))
+                              );
+                              timeline3.play();
 
 
-                                              }
-                                              break;
-                                          case LEFT:
-                                              if (Personnages.this.rectangle.getX() > 0 + deplacement && Personnages.enMarcheUp.getValue() && isEmpty("LEFT", Personnages.this.rectangle)) {
-                                                  Timeline timeline4 = new Timeline();
-                                                  Personnages.enMarcheUp.set(false);
-                                                  timeline4.getKeyFrames().addAll(
-                                                          new KeyFrame(Duration.ZERO, new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[6])),
-                                                          new KeyFrame(Duration.millis(150), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[7])),
-                                                          new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[6])),
-                                                          new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.xProperty(), (Personnages.this.rectangle.getX() - deplacement))),
-                                                          new KeyFrame(Duration.millis(300), new KeyValue(Personnages.enMarcheUp.asObject(), true))
-                                                  );
-                                                  timeline4.play();
+                          }
+                          break;
+                      case LEFT:
+                          if (Personnages.this.rectangle.getX() > 0 + deplacement && Personnages.enMarcheUp.getValue() && isEmpty("LEFT", Personnages.this.rectangle)) {
+                              Timeline timeline4 = new Timeline();
+                              Personnages.enMarcheUp.set(false);
+                              timeline4.getKeyFrames().addAll(
+                                      new KeyFrame(Duration.ZERO, new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[6])),
+                                      new KeyFrame(Duration.millis(150), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[7])),
+                                      new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[6])),
+                                      new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.xProperty(), (Personnages.this.rectangle.getX() - deplacement))),
+                                      new KeyFrame(Duration.millis(300), new KeyValue(Personnages.enMarcheUp.asObject(), true))
+                              );
+                              timeline4.play();
 
-                                              }
-                                              break;
-                                          case E:
-                                              if (Personnages.enMarcheBombe.getValue() && Personnages.enMarcheUp.getValue()) {
-                                                  circle.setCenterX(Personnages.this.rectangle.getX() + Personnages.this.rectangle.getWidth()/2);
-                                                  circle.setCenterY(Personnages.this.rectangle.getY() + Personnages.this.rectangle.getHeight()-circle.getRadius());
-                                                  circle.opacityProperty().set(1);
-                                                  Personnages.enMarcheBombe.set(false);
-                                                  Personnages.enMarcheBombe2.set(false);
-                                                  Timeline timeline5 = new Timeline();
+                          }
+                          break;
+                      case E:
+                          if (Personnages.enMarcheBombe.getValue() && Personnages.enMarcheUp.getValue()) {
+                              circle.setCenterX(Personnages.this.rectangle.getX() + Personnages.this.rectangle.getWidth()/2);
+                              circle.setCenterY(Personnages.this.rectangle.getY() + Personnages.this.rectangle.getHeight()-circle.getRadius());
+                              circle.opacityProperty().set(1);
+                              Personnages.enMarcheBombe.set(false);
+                              Personnages.enMarcheBombe2.set(false);
+                              Timeline timeline5 = new Timeline();
 
-                                                  timeline5.getKeyFrames().addAll(
-                                                          new KeyFrame(Duration.ZERO, new KeyValue(circle.opacityProperty(), 1)),
-                                                          new KeyFrame(Duration.millis(1499), new KeyValue(circle.opacityProperty(), 1)),
-                                                          new KeyFrame(Duration.millis(1500), new KeyValue(circle.opacityProperty(), 0)),
-                                                          new KeyFrame(Duration.millis(1000), new KeyValue(Personnages.enMarcheBombe2.asObject(), true)),
-                                                          new KeyFrame(Duration.millis(1500), e -> bombeExplosion(circle, sample.Main.getBoss()) ),
-                                                          new KeyFrame(Duration.millis(2000), new KeyValue(Personnages.enMarcheBombe.asObject(), true))
+                              timeline5.getKeyFrames().addAll(
+                                      new KeyFrame(Duration.ZERO, new KeyValue(circle.opacityProperty(), 1)),
+                                      new KeyFrame(Duration.millis(1499), new KeyValue(circle.opacityProperty(), 1)),
+                                      new KeyFrame(Duration.millis(1500), new KeyValue(circle.opacityProperty(), 0)),
+                                      new KeyFrame(Duration.millis(1000), new KeyValue(Personnages.enMarcheBombe2.asObject(), true)),
+                                      new KeyFrame(Duration.millis(1500), e -> bombeExplosion(circle, Main.getBoss()) ),
+                                      new KeyFrame(Duration.millis(2000), new KeyValue(Personnages.enMarcheBombe.asObject(), true))
 
-                                                  );
-                                                  timeline5.play();
-                                              }
-                                              if (Personnages.enMarcheBombe2.getValue() && Personnages.enMarcheUp.getValue()) {
-                                                  circle2.setCenterX(Personnages.this.rectangle.getX() + Personnages.this.rectangle.getWidth()/2);
-                                                  circle2.setCenterY(Personnages.this.rectangle.getY() + Personnages.this.rectangle.getHeight()-circle.getRadius());
-                                                  circle2.opacityProperty().set(1);
-                                                  Personnages.enMarcheBombe.set(false);
-                                                  Personnages.enMarcheBombe2.set(false);
-                                                  Timeline timeline6 = new Timeline();
+                              );
+                              timeline5.play();
+                          }
+                          if (Personnages.enMarcheBombe2.getValue() && Personnages.enMarcheUp.getValue()) {
+                              circle2.setCenterX(Personnages.this.rectangle.getX() + Personnages.this.rectangle.getWidth()/2);
+                              circle2.setCenterY(Personnages.this.rectangle.getY() + Personnages.this.rectangle.getHeight()-circle.getRadius());
+                              circle2.opacityProperty().set(1);
+                              Personnages.enMarcheBombe.set(false);
+                              Personnages.enMarcheBombe2.set(false);
+                              Timeline timeline6 = new Timeline();
 
-                                                  timeline6.getKeyFrames().addAll(
-                                                          new KeyFrame(Duration.ZERO, new KeyValue(circle2.opacityProperty(), 1)),
-                                                          new KeyFrame(Duration.millis(1499), new KeyValue(circle2.opacityProperty(), 1)),
-                                                          new KeyFrame(Duration.millis(1500), new KeyValue(circle2.opacityProperty(), 0)),
-                                                          new KeyFrame(Duration.millis(1000), new KeyValue(Personnages.enMarcheBombe.asObject(), true)),
-                                                          new KeyFrame(Duration.millis(1500), e -> bombeExplosion(circle2,sample.Main.getBoss()) ),
-                                                          new KeyFrame(Duration.millis(2000), new KeyValue(Personnages.enMarcheBombe2.asObject(), true))
-                                                  );
-                                              timeline6.play() ;
-                                      }
-                                      }
-                                  }
-                              }
+                              timeline6.getKeyFrames().addAll(
+                                      new KeyFrame(Duration.ZERO, new KeyValue(circle2.opacityProperty(), 1)),
+                                      new KeyFrame(Duration.millis(1499), new KeyValue(circle2.opacityProperty(), 1)),
+                                      new KeyFrame(Duration.millis(1500), new KeyValue(circle2.opacityProperty(), 0)),
+                                      new KeyFrame(Duration.millis(1000), new KeyValue(Personnages.enMarcheBombe.asObject(), true)),
+                                      new KeyFrame(Duration.millis(1500), e -> bombeExplosion(circle2,Main.getBoss()) ),
+                                      new KeyFrame(Duration.millis(2000), new KeyValue(Personnages.enMarcheBombe2.asObject(), true))
+                              );
+                          timeline6.play() ;
+                  }
+                  }
+              }
+          }
         );
 
     }
@@ -390,46 +393,45 @@ public class Personnages  {
 
 
         }
-
-
-
-
         }
+public String getNom() {
+    return nom;
+}
 
+public int getHp() {
+    return hp;
+}
 
+public void setHp(int hp) {
+        hp = hp ;
+}
 
-    public String getNom() {
-        return nom;
-    }
+public Rectangle getViePersonnage() {
+        return viePersonnage ;
+}
 
-    public int getHp() {
-        return hp;
-    }
+public void setViePersonnage(int hp) {
+     this.viePersonnage.setWidth(hp*3);
+}
 
-    public void setHp(int hp) {
-            hp = hp ;
-    }
+public static double getDeplacement() {
+    return deplacement ;
+}
 
-    public Rectangle getViePersonnage() {
-            return viePersonnage ;
-    }
+public Circle getCircle() {
+    return circle;
+ }
 
-    public void setViePersonnage(int hp) {
-         this.viePersonnage.setWidth(hp*3);
-    }
+public Circle getCircle2() {
+    return circle2;
+}
 
-    public static double getDeplacement() {
-        return deplacement ;
-    }
+public Rectangle getRectangle() { return rectangle ;}
 
-    public Circle getCircle() {
-        return circle;
-     }
+public boolean getVivant(){return vivant;}
 
-    public Circle getCircle2() {
-        return circle2;
-    }
-
-     public Rectangle getRectangle() { return rectangle ;}
-
+public BooleanProperty getEnMarcheBombe(){return enMarcheBombe;}
+public BooleanProperty getEnMarcheBombe2(){return  enMarcheBombe2;}
+public BooleanProperty getEnMarcheUp(){return enMarcheUp;}
+public ImagePattern[] getSprite(){return sprite;}
 }
