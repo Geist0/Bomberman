@@ -250,10 +250,9 @@ public class Personnages  {
         int cptDroite = 0;
         int cptGauche = 0;
         int cptBas = 0;
-        URL path  = getClass().getResource("media/bomb.wav") ;
-        AudioClip  ac = new AudioClip(path.toString()) ;
 
-        ac.play();
+
+
         for (Rectangle i : Map.getMap()) {
             if (circle.getCenterY() + circle.getRadius() == i.getY() && circle.getCenterX() - i.getWidth() / 2 == i.getX()
                     && i.getFill() == Map.getObstacle()) {
@@ -404,7 +403,7 @@ public class Personnages  {
         }
 
         if (boss.getHp() <=0 ) {
-
+            System.out.println("coucou");
             boss.rectangle.setFill(new ImagePattern(new Image("aphroditeBas1.png"))); ;
 
 

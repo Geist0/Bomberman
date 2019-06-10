@@ -1,26 +1,98 @@
 package Main;
 
 import Hero.Personnages;
-import Hero.Bot;
 import Map.Map;
 import javafx.application.Application;
+import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.scene.media.AudioClip;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.net.URL;
-
 public class Main extends Application {
+    Scene scene, scene1, scene2;
+    //scene= scene du jeu
+    //scene1=scene du menu
+    //scene2=scene des règles du jeu
     private static Personnages boss = new Personnages("poseidon",64*7,64*7,100,20,512,10) ;
     private static Personnages boss1 = new Personnages("aphrodite",64*6,64*5,100,20,512,10) ;
     private static Personnages hero = new Personnages("poseidon",(int)Personnages.getDeplacement(),(int)Personnages.getDeplacement(),100,20,20,10)  ;
 
     public void start(Stage primaryStage) {
+        //Button
+        Button button = new Button("Jouer");
+        button.setOnMouseClicked(e -> { primaryStage.setScene(scene) ;
+                hero.moveRectangleOnKeyPress(scene) ;
+                Threads ia=new Threads();
+                ia.start(); });
+
+
+
+        Group group = new Group();
+        //Button1
+        Button button1 = new Button("Règle du jeu");
+
+        button1.setOnMouseClicked(e -> primaryStage.setScene(scene2));
+
+        //Button2
+        Button button2=new Button("Quitter");
+        button2.setOnAction(e -> primaryStage.close());
+
+
+        Button button3 = new Button("Retour arrière") ;
+        button3.setOnAction(e -> primaryStage.setScene(scene1));
+
+        VBox layout1 = new VBox(80);
+        layout1.setLayoutX(350);
+        layout1.setLayoutY(200);
+        layout1.getChildren().add(button);
+
+
+
+
 
         Pane root = new Pane() ;
+        Pane root2 = new Pane() ;
+        Pane root3 = new Pane() ;
+        root3.setPrefSize(832,832);
+        root2.setPrefSize(832,832);
+        root.setPrefSize(832,832);
+        scene1 = new Scene(root3, 832, 832);
         primaryStage.setTitle("Age of Mythorman of Mythology 3");
+        StackPane layout2 = new StackPane();
+        layout1.getChildren().add(button1);
+        layout1.getChildren().add(button2);
 
+        layout2.getChildren().add(button3) ;
+        layout2.setLayoutX(350);
+        layout2.setLayoutY(800);
+
+        button.setPrefWidth(170);
+        button.setPrefHeight(50);
+        button.setFont(Font.font("Verdana",20));
+        button2.setPrefWidth(170);
+        button2.setPrefHeight(50);
+        button2.setFont(Font.font("Verdana",20));
+        button1.setPrefWidth(170);
+        button1.setPrefHeight(50);
+        button1.setFont(Font.font("Verdana",20));
+
+
+        scene2 = new Scene(root2, 832, 832);
+        BackgroundImage regle= new BackgroundImage(new Image("parchemn.png",832,832,false,true),
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+
+        BackgroundImage menu= new BackgroundImage(new Image("fondmenu.png",832,832,false,true),
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+
+        root2.setBackground(new Background(regle));
+        root3.setBackground(new Background(menu));
+        root2.getChildren().add(layout2);
+        root3.getChildren().add(layout1);
         Map.putMapImage();
 
         root.getChildren().addAll(Map.getMap());
@@ -33,15 +105,13 @@ public class Main extends Application {
         root.getChildren().add(boss.getCircle()) ;
         root.getChildren().add(boss.getCircle2()) ;
         root.getChildren().add(boss.getViePersonnage());
-        final Scene scene = new Scene(root, 832, 832);
-        primaryStage.setScene(scene) ;
-        System.out.println("okok");
-        hero.moveRectangleOnKeyPress(scene) ;
-        Threads ia=new Threads();
-        ia.start();
-        System.out.println("okok2");
+
+        scene = new Scene(root, 832, 832);
+        //primaryStage.setScene(scene) ;
 
 
+        primaryStage.setScene(scene1);
+        primaryStage.setTitle("title here");
         primaryStage.show();
 
     }
