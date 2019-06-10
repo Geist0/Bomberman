@@ -67,11 +67,11 @@ public class Bot {
                     new KeyFrame(Duration.ZERO, new KeyValue(bot.getRectangle().fillProperty(), sprite[6])),
                     new KeyFrame(Duration.millis(150), new KeyValue(bot.getRectangle().fillProperty(), sprite[7])),
                     new KeyFrame(Duration.millis(300), new KeyValue(bot.getRectangle().fillProperty(), sprite[6])),
-                    new KeyFrame(Duration.millis(300), new KeyValue(bot.getRectangle().xProperty(), (bot.getRectangle().getX() - bot.getDeplacement()))),
+                    new KeyFrame(Duration.millis(300), new KeyValue(bot.getRectangle().xProperty(), (bot.getRectangle().getX() - Personnages.getDeplacement()))),
                     new KeyFrame(Duration.millis(300), new KeyValue(bot.getEnMarcheUp().asObject(), true))
             );
             timeline4.play();
-            int rand2 = (int) (Math.random() * 3);
+            int rand2 = (int) (Math.random() * 2);
             if (rand2 >= 1) {
                 poserBomb(bot);
             }
@@ -79,7 +79,7 @@ public class Bot {
     }
 
     public static void poserBomb(Personnages bot) {
-        if (bot.getEnMarcheBombe().getValue() && bot.getEnMarcheUp().getValue()) {
+        if (bot.getEnMarcheBombe().getValue()) {
             bot.getCircle().setCenterX(bot.getRectangle().getX() + bot.getRectangle().getWidth() / 2);
             bot.getCircle().setCenterY(bot.getRectangle().getY() + bot.getRectangle().getHeight() - bot.getCircle().getRadius());
             bot.getCircle().opacityProperty().set(1);
@@ -98,7 +98,7 @@ public class Bot {
             );
             timeline.play();
         }
-        if (bot.getEnMarcheBombe2().getValue() && bot.getEnMarcheUp().getValue()) {
+        if (bot.getEnMarcheBombe2().getValue()) {
             bot.getCircle2().setCenterX(bot.getRectangle().getX() + bot.getRectangle().getWidth() / 2);
             bot.getCircle2().setCenterY(bot.getRectangle().getY() + bot.getRectangle().getHeight() - bot.getCircle2().getRadius());
             bot.getCircle2().opacityProperty().set(1);

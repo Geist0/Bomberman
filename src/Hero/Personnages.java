@@ -9,13 +9,18 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import javafx.animation.KeyValue ;
-
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.io.File;
+import java.net.URL;
+import java.nio.file.Paths;
 
 public class Personnages  {
     private String nom;
@@ -25,9 +30,9 @@ public class Personnages  {
     private ImagePattern[] sprite;
     private int damages;
     private Rectangle viePersonnage = new Rectangle() ;
-    static private BooleanProperty enMarcheUp = new SimpleBooleanProperty(true) ;
-    static private BooleanProperty enMarcheBombe = new SimpleBooleanProperty(true) ;
-    static private BooleanProperty enMarcheBombe2 = new SimpleBooleanProperty(true) ;
+    private BooleanProperty enMarcheUp = new SimpleBooleanProperty(true) ;
+    private BooleanProperty enMarcheBombe = new SimpleBooleanProperty(true) ;
+    private BooleanProperty enMarcheBombe2 = new SimpleBooleanProperty(true) ;
     final static double  deplacement = 64 ;
     static Image grassImage = ImageLoader.get().load("terrain4.png")  ;
     static ImagePattern grass = new ImagePattern(grassImage);
@@ -35,7 +40,12 @@ public class Personnages  {
     private Rectangle rectangle = new Rectangle(15, 15, Personnages.getDeplacement(), Personnages.getDeplacement()) ;
     private boolean vivant;
 
-        public Personnages(String nom,int caseX,int caseY,int hp, int damages,int vieX,int vieY) {
+
+
+
+
+
+    public Personnages(String nom,int caseX,int caseY,int hp, int damages,int vieX,int vieY) {
             sprite= new ImagePattern[9];
             this.nom=nom;
             creerImage(nom);
@@ -59,14 +69,14 @@ public class Personnages  {
 
     }
     public void creerImage(String nom){
-        Image ihaut1 = ImageLoader.get().load(nom+"haut1.png") ;
-        Image ihaut2 = ImageLoader.get().load(nom+"haut2.png") ;
-        Image idroite1 = ImageLoader.get().load(nom+"droite1.png") ;
-        Image idroite2 = ImageLoader.get().load(nom+"droite2.png") ;
-        Image ibas1 = ImageLoader.get().load(nom+"bas1.png") ;
-        Image ibas2 = ImageLoader.get().load(nom+"bas2.png") ;
-        Image igauche1 = ImageLoader.get().load(nom+"gauche1.png") ;
-        Image igauche2 = ImageLoader.get().load(nom+"gauche2.png") ;
+        Image ihaut1 = ImageLoader.get().load(nom+"Haut1.png") ;
+        Image ihaut2 = ImageLoader.get().load(nom+"Haut2.png") ;
+        Image idroite1 = ImageLoader.get().load(nom+"Droite1.png") ;
+        Image idroite2 = ImageLoader.get().load(nom+"Droite2.png") ;
+        Image ibas1 = ImageLoader.get().load(nom+"Bas1.png") ;
+        Image ibas2 = ImageLoader.get().load(nom+"Bas2.png") ;
+        Image igauche1 = ImageLoader.get().load(nom+"Gauche1.png") ;
+        Image igauche2 = ImageLoader.get().load(nom+"Gauche2.png") ;
         Image ibombe = ImageLoader.get().load("bombe_eau.png")  ;
 
         sprite[0]=new ImagePattern(ihaut1);
@@ -124,31 +134,34 @@ public class Personnages  {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
               @Override
               public void handle(KeyEvent event) {
+
                   switch (event.getCode()) {
                       case UP :
-                          if (Personnages.this.rectangle.getY() > 0 + Personnages.this.rectangle.getHeight() && Personnages.enMarcheUp.getValue() && isEmpty("UP", Personnages.this.rectangle) ) {
+                          if (Main.getHero().rectangle.getY() > 0 + Main.getHero().rectangle.getHeight() && Main.getHero().enMarcheUp.getValue() && isEmpty("UP", Main.getHero().rectangle) ) {
                               Timeline timeline = new Timeline();
-                              Personnages.enMarcheUp.set(false);
+                              Main.getHero().enMarcheUp.set(false);
                               timeline.getKeyFrames().addAll(
-                                      new KeyFrame(Duration.ZERO, new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[0])),
-                                      new KeyFrame(Duration.millis(150), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[1])),
-                                      new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[0])),
-                                      new KeyFrame(Duration.millis(300), new KeyValue(Personnages.enMarcheUp.asObject(), true)),
-                                      new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.yProperty(), (int) Personnages.this.rectangle.getY() - deplacement))
+                                      new KeyFrame(Duration.ZERO, new KeyValue(Main.getHero().rectangle.fillProperty(),sprite[0])),
+                                      new KeyFrame(Duration.millis(150), new KeyValue(Main.getHero().rectangle.fillProperty(),sprite[1])),
+                                      new KeyFrame(Duration.millis(300), new KeyValue(Main.getHero().rectangle.fillProperty(),sprite[0])),
+                                      new KeyFrame(Duration.millis(300), new KeyValue(Main.getHero().enMarcheUp.asObject(), true)),
+                                      new KeyFrame(Duration.millis(300), new KeyValue(Main.getHero().rectangle.yProperty(), (int) Main.getHero().rectangle.getY() - deplacement))
                               );
                               timeline.play();
+
+
                           }
                           break;
                       case RIGHT:
-                          if (Personnages.this.rectangle.getX() < scene.getWidth() - Personnages.this.rectangle.getWidth() - deplacement && Personnages.enMarcheUp.getValue() && isEmpty("RIGHT", Personnages.this.rectangle)) {
+                          if (Main.getHero().rectangle.getX() < scene.getWidth() - Main.getHero().rectangle.getWidth() - deplacement && Main.getHero().enMarcheUp.getValue() && isEmpty("RIGHT", Main.getHero().rectangle)) {
                               Timeline timeline2 = new Timeline();
-                              Personnages.enMarcheUp.set(false);
+                              Main.getHero().enMarcheUp.set(false);
                               timeline2.getKeyFrames().addAll(
-                                      new KeyFrame(Duration.ZERO, new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[2] )),
-                                      new KeyFrame(Duration.millis(150), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[3])),
-                                      new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[2])),
-                                      new KeyFrame(Duration.millis(300), new KeyValue(Personnages.enMarcheUp.asObject(), true)),
-                                      new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.xProperty(), Personnages.this.rectangle.getX() + deplacement))
+                                      new KeyFrame(Duration.ZERO, new KeyValue(Main.getHero().rectangle.fillProperty(),sprite[2] )),
+                                      new KeyFrame(Duration.millis(150), new KeyValue(Main.getHero().rectangle.fillProperty(),sprite[3])),
+                                      new KeyFrame(Duration.millis(300), new KeyValue(Main.getHero().rectangle.fillProperty(),sprite[2])),
+                                      new KeyFrame(Duration.millis(300), new KeyValue(Main.getHero().enMarcheUp.asObject(), true)),
+                                      new KeyFrame(Duration.millis(300), new KeyValue(Main.getHero().rectangle.xProperty(), Main.getHero().rectangle.getX() + deplacement))
                               );
                               timeline2.play();
                           }
@@ -156,15 +169,15 @@ public class Personnages  {
                           break;
                       case DOWN:
 
-                          if (Personnages.this.rectangle.getY() < scene.getHeight() - Personnages.this.rectangle.getHeight() - deplacement && Personnages.enMarcheUp.getValue() && isEmpty("DOWN", Personnages.this.rectangle)) {
+                          if (Main.getHero().rectangle.getY() < scene.getHeight() - Main.getHero().rectangle.getHeight() - deplacement && Main.getHero().enMarcheUp.getValue() && isEmpty("DOWN", Main.getHero().rectangle)) {
                               Timeline timeline3 = new Timeline();
-                              Personnages.enMarcheUp.set(false);
+                              Main.getHero().enMarcheUp.set(false);
                               timeline3.getKeyFrames().addAll(
                                       new KeyFrame(Duration.ZERO, new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[4])),
-                                      new KeyFrame(Duration.millis(150), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[5])),
-                                      new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[4])),
-                                      new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.yProperty(), Personnages.this.rectangle.getY() + deplacement)),
-                                      new KeyFrame(Duration.millis(300), new KeyValue(Personnages.enMarcheUp.asObject(), true))
+                                      new KeyFrame(Duration.millis(150), new KeyValue(Main.getHero().rectangle.fillProperty(),sprite[5])),
+                                      new KeyFrame(Duration.millis(300), new KeyValue(Main.getHero().rectangle.fillProperty(),sprite[4])),
+                                      new KeyFrame(Duration.millis(300), new KeyValue(Main.getHero().rectangle.yProperty(), Main.getHero().rectangle.getY() + deplacement)),
+                                      new KeyFrame(Duration.millis(300), new KeyValue(Main.getHero().enMarcheUp.asObject(), true))
                               );
                               timeline3.play();
 
@@ -172,57 +185,58 @@ public class Personnages  {
                           }
                           break;
                       case LEFT:
-                          if (Personnages.this.rectangle.getX() > 0 + deplacement && Personnages.enMarcheUp.getValue() && isEmpty("LEFT", Personnages.this.rectangle)) {
+                          if (Main.getHero().rectangle.getX() > 0 + deplacement && Main.getHero().enMarcheUp.getValue() && isEmpty("LEFT", Main.getHero().rectangle)) {
                               Timeline timeline4 = new Timeline();
-                              Personnages.enMarcheUp.set(false);
+                              Main.getHero().enMarcheUp.set(false);
                               timeline4.getKeyFrames().addAll(
-                                      new KeyFrame(Duration.ZERO, new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[6])),
-                                      new KeyFrame(Duration.millis(150), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[7])),
-                                      new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.fillProperty(),sprite[6])),
-                                      new KeyFrame(Duration.millis(300), new KeyValue(Personnages.this.rectangle.xProperty(), (Personnages.this.rectangle.getX() - deplacement))),
-                                      new KeyFrame(Duration.millis(300), new KeyValue(Personnages.enMarcheUp.asObject(), true))
+                                      new KeyFrame(Duration.ZERO, new KeyValue(Main.getHero().rectangle.fillProperty(),sprite[6])),
+                                      new KeyFrame(Duration.millis(150), new KeyValue(Main.getHero().rectangle.fillProperty(),sprite[7])),
+                                      new KeyFrame(Duration.millis(300), new KeyValue(Main.getHero().rectangle.fillProperty(),sprite[6])),
+                                      new KeyFrame(Duration.millis(300), new KeyValue(Main.getHero().rectangle.xProperty(), (Main.getHero().rectangle.getX() - deplacement))),
+                                      new KeyFrame(Duration.millis(300), new KeyValue(Main.getHero().enMarcheUp.asObject(), true))
                               );
                               timeline4.play();
 
                           }
                           break;
                       case E:
-                          if (Personnages.enMarcheBombe.getValue() && Personnages.enMarcheUp.getValue()) {
-                              circle.setCenterX(Personnages.this.rectangle.getX() + Personnages.this.rectangle.getWidth()/2);
-                              circle.setCenterY(Personnages.this.rectangle.getY() + Personnages.this.rectangle.getHeight()-circle.getRadius());
-                              circle.opacityProperty().set(1);
-                              Personnages.enMarcheBombe.set(false);
-                              Personnages.enMarcheBombe2.set(false);
+                          if (Main.getHero().enMarcheBombe.getValue() && Main.getHero().enMarcheUp.getValue()) {
+                              Main.getHero().circle.setCenterX(Main.getHero().rectangle.getX() + Main.getHero().rectangle.getWidth()/2);
+                              Main.getHero().circle.setCenterY(Main.getHero().rectangle.getY() + Main.getHero().rectangle.getHeight()-circle.getRadius());
+                              Main.getHero().circle.opacityProperty().set(1);
+                              Main.getHero().enMarcheBombe.set(false);
+                              Main.getHero().enMarcheBombe2.set(false);
                               Timeline timeline5 = new Timeline();
 
                               timeline5.getKeyFrames().addAll(
-                                      new KeyFrame(Duration.ZERO, new KeyValue(circle.opacityProperty(), 1)),
-                                      new KeyFrame(Duration.millis(1499), new KeyValue(circle.opacityProperty(), 1)),
-                                      new KeyFrame(Duration.millis(1500), new KeyValue(circle.opacityProperty(), 0)),
-                                      new KeyFrame(Duration.millis(1000), new KeyValue(Personnages.enMarcheBombe2.asObject(), true)),
-                                      new KeyFrame(Duration.millis(1500), e -> bombeExplosion(circle, Main.getBoss()) ),
-                                      new KeyFrame(Duration.millis(2000), new KeyValue(Personnages.enMarcheBombe.asObject(), true))
+                                      new KeyFrame(Duration.ZERO, new KeyValue(Main.getHero().circle.opacityProperty(), 1)),
+                                      new KeyFrame(Duration.millis(1499), new KeyValue(Main.getHero().circle.opacityProperty(), 1)),
+                                      new KeyFrame(Duration.millis(1500), new KeyValue(Main.getHero().circle.opacityProperty(), 0)),
+                                      new KeyFrame(Duration.millis(1000), new KeyValue(Main.getHero().enMarcheBombe2.asObject(), true)),
+                                      new KeyFrame(Duration.millis(1500), e -> bombeExplosion(Main.getHero().circle, Main.getBoss()) ),
+                                      new KeyFrame(Duration.millis(2000), new KeyValue(Main.getHero().enMarcheBombe.asObject(), true))
 
                               );
                               timeline5.play();
                           }
-                          if (Personnages.enMarcheBombe2.getValue() && Personnages.enMarcheUp.getValue()) {
-                              circle2.setCenterX(Personnages.this.rectangle.getX() + Personnages.this.rectangle.getWidth()/2);
-                              circle2.setCenterY(Personnages.this.rectangle.getY() + Personnages.this.rectangle.getHeight()-circle.getRadius());
-                              circle2.opacityProperty().set(1);
-                              Personnages.enMarcheBombe.set(false);
-                              Personnages.enMarcheBombe2.set(false);
+                          if (Main.getHero().enMarcheBombe2.getValue() && Main.getHero().enMarcheUp.getValue()) {
+                              Main.getHero().circle2.setCenterX( Main.getHero().rectangle.getX() + Main.getHero().rectangle.getWidth()/2);
+                              Main.getHero().circle2.setCenterY( Main.getHero().rectangle.getY() + Main.getHero().rectangle.getHeight()-circle.getRadius());
+                              Main.getHero().circle2.opacityProperty().set(1);
+                              Main.getHero().enMarcheBombe.set(false);
+                              Main.getHero().enMarcheBombe2.set(false);
                               Timeline timeline6 = new Timeline();
 
                               timeline6.getKeyFrames().addAll(
-                                      new KeyFrame(Duration.ZERO, new KeyValue(circle2.opacityProperty(), 1)),
-                                      new KeyFrame(Duration.millis(1499), new KeyValue(circle2.opacityProperty(), 1)),
-                                      new KeyFrame(Duration.millis(1500), new KeyValue(circle2.opacityProperty(), 0)),
-                                      new KeyFrame(Duration.millis(1000), new KeyValue(Personnages.enMarcheBombe.asObject(), true)),
-                                      new KeyFrame(Duration.millis(1500), e -> bombeExplosion(circle2,Main.getBoss()) ),
-                                      new KeyFrame(Duration.millis(2000), new KeyValue(Personnages.enMarcheBombe2.asObject(), true))
+                                      new KeyFrame(Duration.ZERO, new KeyValue(Main.getHero().circle2.opacityProperty(), 1)),
+                                      new KeyFrame(Duration.millis(1499), new KeyValue(Main.getHero().circle2.opacityProperty(), 1)),
+                                      new KeyFrame(Duration.millis(1500), new KeyValue(Main.getHero().circle2.opacityProperty(), 0)),
+                                      new KeyFrame(Duration.millis(1000), new KeyValue(Main.getHero().enMarcheBombe.asObject(), true)),
+                                      new KeyFrame(Duration.millis(1500), e -> bombeExplosion(Main.getHero().circle2,Main.getBoss()) ),
+                                      new KeyFrame(Duration.millis(2000), new KeyValue(Main.getHero().enMarcheBombe2.asObject(), true))
                               );
                           timeline6.play() ;
+
                   }
                   }
               }
@@ -236,13 +250,19 @@ public class Personnages  {
         int cptDroite = 0;
         int cptGauche = 0;
         int cptBas = 0;
+        URL path  = getClass().getResource("media/bomb.wav") ;
+        AudioClip  ac = new AudioClip(path.toString()) ;
+
+        ac.play();
         for (Rectangle i : Map.getMap()) {
             if (circle.getCenterY() + circle.getRadius() == i.getY() && circle.getCenterX() - i.getWidth() / 2 == i.getX()
                     && i.getFill() == Map.getObstacle()) {
 
                 i.setFill(grass);
                 cptBas++;
-            } if (circle.getCenterY() + circle.getRadius() == i.getY() && circle.getCenterX() - i.getWidth() / 2 == i.getX()
+
+            }
+            if (circle.getCenterY() + circle.getRadius() == i.getY() && circle.getCenterX() - i.getWidth() / 2 == i.getX()
                     && i.getFill() == Map.getMur0()) {
                 cptBas++;
             }
@@ -250,7 +270,8 @@ public class Personnages  {
             if (circle.getCenterY() + circle.getRadius() - deplacement - i.getHeight() == i.getY() && circle.getCenterX() - i.getWidth() / 2 == i.getX() && i.getFill() == Map.getObstacle()) {
                 i.setFill(grass);
                 cptHaut++;
-            } if (circle.getCenterY() + circle.getRadius() - deplacement - i.getHeight() == i.getY()
+            }
+            if (circle.getCenterY() + circle.getRadius() - deplacement - i.getHeight() == i.getY()
                     && circle.getCenterX() - i.getWidth() / 2 == i.getX() && i.getFill() == Map.getMur0()) {
                 cptHaut++;
             }
@@ -258,15 +279,17 @@ public class Personnages  {
             if (circle.getCenterX() + i.getWidth() / 2 == i.getX() && circle.getCenterY() - i.getHeight() + circle.getRadius() == i.getY() && i.getFill() == Map.getObstacle()) {
                 i.setFill(grass);
                 cptGauche++;
-            } if ( circle.getCenterX() + i.getWidth() / 2 == i.getX()
+            }
+            if (circle.getCenterX() + i.getWidth() / 2 == i.getX()
                     && circle.getCenterY() - i.getHeight() + circle.getRadius() == i.getY() && i.getFill() == Map.getMur0()) {
                 cptGauche++;
             }
 
-            if ( circle.getCenterX() - i.getWidth() / 2 - deplacement == i.getX() && circle.getCenterY() - i.getHeight() + circle.getRadius() == i.getY() && i.getFill() == Map.getObstacle()) {
+            if (circle.getCenterX() - i.getWidth() / 2 - deplacement == i.getX() && circle.getCenterY() - i.getHeight() + circle.getRadius() == i.getY() && i.getFill() == Map.getObstacle()) {
                 i.setFill(grass);
                 cptDroite++;
-            } if ( circle.getCenterX() - i.getWidth() / 2 - deplacement == i.getX()
+            }
+            if (circle.getCenterX() - i.getWidth() / 2 - deplacement == i.getX()
                     && circle.getCenterY() - i.getHeight() + circle.getRadius() == i.getY() && i.getFill() == Map.getMur0()) {
                 cptDroite++;
             }
@@ -274,7 +297,7 @@ public class Personnages  {
 
         }
         for (Rectangle i : Map.getMap()) {
-            if ( circle.getCenterY() + circle.getRadius() + deplacement == i.getY() && circle.getCenterX() - i.getWidth() / 2 == i.getX()
+            if (circle.getCenterY() + circle.getRadius() + deplacement == i.getY() && circle.getCenterX() - i.getWidth() / 2 == i.getX()
                     && i.getFill() == Map.getObstacle() && cptBas == 0) {
                 i.setFill(grass);
 
@@ -286,114 +309,120 @@ public class Personnages  {
 
             }
 
-            if ( circle.getCenterX() + i.getWidth() / 2 + deplacement == i.getX()
+            if (circle.getCenterX() + i.getWidth() / 2 + deplacement == i.getX()
                     && circle.getCenterY() - i.getHeight() + circle.getRadius() == i.getY()
                     && i.getFill() == Map.getObstacle() && cptGauche == 0) {
                 i.setFill(grass);
 
             }
 
-            if ( circle.getCenterX() - i.getWidth() / 2 - (deplacement * 2) == i.getX()
+            if (circle.getCenterX() - i.getWidth() / 2 - (deplacement * 2) == i.getX()
                     && circle.getCenterY() - i.getHeight() + circle.getRadius() == i.getY()
                     && i.getFill() == Map.getObstacle() && cptDroite == 0) {
                 i.setFill(grass);
             }
 
         }
-        if (( circle.getCenterY() + circle.getRadius() <= boss.getRectangle().getY() && circle.getCenterY() + circle.getRadius()+deplacement >= boss.getRectangle().getY() && circle.getCenterX() - rectangle.getWidth() / 2 == boss.getRectangle().getX())
-                || circle.getCenterY() + circle.getRadius() + deplacement <= boss.getRectangle().getY() && circle.getCenterY() + circle.getRadius() + (deplacement*2) > boss.getRectangle().getY() && circle.getCenterX() - rectangle.getWidth() / 2 == boss.getRectangle().getX()
+        if ((circle.getCenterY() + circle.getRadius() <= boss.getRectangle().getY() && circle.getCenterY() + circle.getRadius() + deplacement >= boss.getRectangle().getY() && circle.getCenterX() - rectangle.getWidth() / 2 == boss.getRectangle().getX())
+                || circle.getCenterY() + circle.getRadius() + deplacement <= boss.getRectangle().getY() && circle.getCenterY() + circle.getRadius() + (deplacement * 2) > boss.getRectangle().getY() && circle.getCenterX() - rectangle.getWidth() / 2 == boss.getRectangle().getX()
                 && cptBas == 0) {
 
-            boss.hp -= this.damages ;
+            boss.hp -= this.damages;
             boss.setViePersonnage(boss.hp);
 
 
-        }
-        else if ((circle.getCenterY() + circle.getRadius() - deplacement - rectangle.getHeight() <= boss.getRectangle().getY() && circle.getCenterY() + circle.getRadius() - deplacement >= boss.getRectangle().getY()
+        } else if ((circle.getCenterY() + circle.getRadius() - deplacement - rectangle.getHeight() <= boss.getRectangle().getY() && circle.getCenterY() + circle.getRadius() - deplacement >= boss.getRectangle().getY()
                 && circle.getCenterX() - boss.getRectangle().getWidth() / 2 == boss.getRectangle().getX()) ||
-                (circle.getCenterY() + circle.getRadius() - (deplacement * 2) - rectangle.getHeight() <= boss.getRectangle().getY() && circle.getCenterY() + circle.getRadius() - (deplacement*2) >= boss.getRectangle().getY()
-                        && circle.getCenterX() - rectangle.getWidth() / 2 == boss.getRectangle().getX() && cptHaut == 0 )) {
+                (circle.getCenterY() + circle.getRadius() - (deplacement * 2) - rectangle.getHeight() <= boss.getRectangle().getY() && circle.getCenterY() + circle.getRadius() - (deplacement * 2) >= boss.getRectangle().getY()
+                        && circle.getCenterX() - rectangle.getWidth() / 2 == boss.getRectangle().getX() && cptHaut == 0)) {
 
-            boss.hp -= this.damages ;
+            boss.hp -= this.damages;
             boss.setViePersonnage(boss.hp);
 
 
-        }
-
-        else if ((  circle.getCenterX() + rectangle.getWidth() / 2 <= boss.getRectangle().getX() && circle.getCenterX() + rectangle.getWidth() / 2 + deplacement >= boss.getRectangle().getX()
+        } else if ((circle.getCenterX() + rectangle.getWidth() / 2 <= boss.getRectangle().getX() && circle.getCenterX() + rectangle.getWidth() / 2 + deplacement >= boss.getRectangle().getX()
                 && circle.getCenterY() - rectangle.getHeight() + circle.getRadius() == boss.getRectangle().getY())
-                || (circle.getCenterX() + rectangle.getWidth() / 2 + deplacement >= boss.getRectangle().getX() && circle.getCenterX() + rectangle.getWidth() / 2 + deplacement*2 >= boss.getRectangle().getX()
+                || (circle.getCenterX() + rectangle.getWidth() / 2 + deplacement >= boss.getRectangle().getX() && circle.getCenterX() + rectangle.getWidth() / 2 + deplacement * 2 >= boss.getRectangle().getX()
                 && circle.getCenterY() - rectangle.getHeight() + circle.getRadius() == boss.getRectangle().getY()
                 && cptGauche == 0)) {
 
-            boss.hp -= this.damages ;
+            boss.hp -= this.damages;
             boss.setViePersonnage(boss.hp);
 
 
-        }
-
-        else if ((circle.getCenterX() - rectangle.getWidth() / 2 - deplacement <= boss.getRectangle().getX() && boss.getRectangle().getX() <= circle.getCenterX() - rectangle.getHeight()/2
+        } else if ((circle.getCenterX() - rectangle.getWidth() / 2 - deplacement <= boss.getRectangle().getX() && boss.getRectangle().getX() <= circle.getCenterX() - rectangle.getHeight() / 2
                 && circle.getCenterY() - boss.getRectangle().getHeight() + circle.getRadius() == boss.getRectangle().getY())
                 || (circle.getCenterX() - rectangle.getWidth() / 2 - (deplacement * 2) <= boss.getRectangle().getX()
                 && circle.getCenterX() - rectangle.getWidth() / 2 - (deplacement) >= boss.getRectangle().getX() && circle.getCenterY() - rectangle.getHeight() + circle.getRadius() == boss.getRectangle().getY()
                 && cptDroite == 0)) {
 
-            boss.hp  -= this.damages ;
+            boss.hp -= this.damages;
+            boss.setViePersonnage(boss.hp);
+
+
+        } else if ((circle.getCenterX() - rectangle.getWidth() / 2 == boss.rectangle.getX()
+                && circle.getCenterY() - rectangle.getHeight() + circle.getRadius() == boss.rectangle.getY())) {
+
+
+            boss.hp -= this.damages;
             boss.setViePersonnage(boss.hp);
 
 
         }
 
-        else if ((circle.getCenterX() - rectangle.getWidth() /2 == boss.rectangle.getX()
-                && circle.getCenterY() - rectangle.getHeight() + circle.getRadius() == boss.rectangle.getY()) ){
-
-
-            boss.hp -= this.damages ;
-            boss.setViePersonnage(boss.hp);
-
-
-        }
-
-        if (( circle.getCenterY() + circle.getRadius() <= rectangle.getY() && circle.getCenterY() + circle.getRadius()+deplacement >= rectangle.getY() && circle.getCenterX() - rectangle.getWidth() / 2 == rectangle.getX())
-                || circle.getCenterY() + circle.getRadius() + deplacement <= rectangle.getY() && circle.getCenterY() + circle.getRadius() + (deplacement*2) > rectangle.getY() && circle.getCenterX() - rectangle.getWidth() / 2 == rectangle.getX()
+        if ((circle.getCenterY() + circle.getRadius() <= rectangle.getY() && circle.getCenterY() + circle.getRadius() + deplacement >= rectangle.getY() && circle.getCenterX() - rectangle.getWidth() / 2 == rectangle.getX())
+                || circle.getCenterY() + circle.getRadius() + deplacement <= rectangle.getY() && circle.getCenterY() + circle.getRadius() + (deplacement * 2) > rectangle.getY() && circle.getCenterX() - rectangle.getWidth() / 2 == rectangle.getX()
                 && cptBas == 0) {
-            this.hp-=this.damages ;
+            this.hp -= this.damages;
             this.setViePersonnage(this.hp);
-        }
-        else if ((circle.getCenterY() + circle.getRadius() - deplacement - rectangle.getHeight() <= rectangle.getY() && circle.getCenterY() + circle.getRadius() - deplacement >= rectangle.getY()
+        } else if ((circle.getCenterY() + circle.getRadius() - deplacement - rectangle.getHeight() <= rectangle.getY() && circle.getCenterY() + circle.getRadius() - deplacement >= rectangle.getY()
                 && circle.getCenterX() - rectangle.getWidth() / 2 == rectangle.getX()) ||
-                (circle.getCenterY() + circle.getRadius() - (deplacement * 2) - rectangle.getHeight() <= rectangle.getY() && circle.getCenterY() + circle.getRadius() - (deplacement*2) >= rectangle.getY()
-                        && circle.getCenterX() - rectangle.getWidth() / 2 == rectangle.getX() && cptHaut == 0 )) {
-            this.hp -=this.damages ;
+                (circle.getCenterY() + circle.getRadius() - (deplacement * 2) - rectangle.getHeight() <= rectangle.getY() && circle.getCenterY() + circle.getRadius() - (deplacement * 2) >= rectangle.getY()
+                        && circle.getCenterX() - rectangle.getWidth() / 2 == rectangle.getX() && cptHaut == 0)) {
+            this.hp -= this.damages;
             this.setViePersonnage(this.hp);
-        }
-
-        else if (( circle.getCenterX() + rectangle.getWidth() / 2 <= rectangle.getX() && circle.getCenterX() + rectangle.getWidth() / 2 + deplacement >= rectangle.getX() && circle.getCenterY() - rectangle.getHeight() + circle.getRadius() == rectangle.getY())
-                || (circle.getCenterX() + rectangle.getWidth() / 2 + deplacement >= rectangle.getX() && circle.getCenterX() + rectangle.getWidth() / 2 + deplacement*2 >= rectangle.getX()
+        } else if ((circle.getCenterX() + rectangle.getWidth() / 2 <= rectangle.getX() && circle.getCenterX() + rectangle.getWidth() / 2 + deplacement >= rectangle.getX() && circle.getCenterY() - rectangle.getHeight() + circle.getRadius() == rectangle.getY())
+                || (circle.getCenterX() + rectangle.getWidth() / 2 + deplacement >= rectangle.getX() && circle.getCenterX() + rectangle.getWidth() / 2 + deplacement * 2 >= rectangle.getX()
                 && circle.getCenterY() - rectangle.getHeight() + circle.getRadius() == rectangle.getY()
                 && cptGauche == 0)) {
-            this.hp -=this.damages ;
+            this.hp -= this.damages;
             this.setViePersonnage(this.hp);
-        }
-
-        else if ((circle.getCenterX() - rectangle.getWidth() / 2 - deplacement <= rectangle.getX() && rectangle.getX() <= circle.getCenterX() - rectangle.getHeight()/2 && circle.getCenterY() - rectangle.getHeight() + circle.getRadius() == rectangle.getY())
+        } else if ((circle.getCenterX() - rectangle.getWidth() / 2 - deplacement <= rectangle.getX() && rectangle.getX() <= circle.getCenterX() - rectangle.getHeight() / 2 && circle.getCenterY() - rectangle.getHeight() + circle.getRadius() == rectangle.getY())
                 || (circle.getCenterX() - rectangle.getWidth() / 2 - (deplacement * 2) <= rectangle.getX()
                 && circle.getCenterX() - rectangle.getWidth() / 2 - (deplacement) >= rectangle.getX() && circle.getCenterY() - rectangle.getHeight() + circle.getRadius() == rectangle.getY()
                 && cptDroite == 0)) {
 
-            this.hp-=this.damages ;
+            this.hp -= this.damages;
             this.setViePersonnage(this.hp);
 
-        }
+        } else if ((circle.getCenterX() - rectangle.getWidth() / 2 == rectangle.getX() && circle.getCenterY() - rectangle.getHeight() + circle.getRadius() == rectangle.getY())) {
 
-        else if ((circle.getCenterX() - rectangle.getWidth() /2 == rectangle.getX() && circle.getCenterY() - rectangle.getHeight() + circle.getRadius() == rectangle.getY()) ){
-
-            this.hp -=this.damages ;
+            this.hp -= this.damages;
             this.setViePersonnage(this.hp);
 
 
         }
+
+        if (boss.getHp() <=0 ) {
+
+            boss.rectangle.setFill(new ImagePattern(new Image("aphroditeBas1.png"))); ;
+
+
+
         }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 public String getNom() {
     return nom;
 }
@@ -433,5 +462,10 @@ public boolean getVivant(){return vivant;}
 public BooleanProperty getEnMarcheBombe(){return enMarcheBombe;}
 public BooleanProperty getEnMarcheBombe2(){return  enMarcheBombe2;}
 public BooleanProperty getEnMarcheUp(){return enMarcheUp;}
+
+
 public ImagePattern[] getSprite(){return sprite;}
+
+
+public void setSprite(ImagePattern[] sprite){ this.sprite = sprite ;}
 }

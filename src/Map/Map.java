@@ -17,6 +17,8 @@ public class Map{
     }
     static Image mur0 = ImageLoader.get().load("mur0.png") ;
     private static ImagePattern mur0Pattern = new ImagePattern(mur0) ;
+    static Image arbre = ImageLoader.get().load("grass.png") ;
+    private static ImagePattern arbrePattern = new ImagePattern(arbre) ;
     static Image mur1 = ImageLoader.get().load("mur1.png") ;
     static Image mur2 = ImageLoader.get().load("mur2.png") ;
     static Image mur3 = ImageLoader.get().load("mur3.png") ;
@@ -89,13 +91,13 @@ public class Map{
                 i.setFill(new ImagePattern(mur6));
             }
             else if(i.getFill().equals(Color.BLACK)){
-                i.setFill(mur0Pattern);
+                i.setFill(obstaclePattern);
             }
             if (i.getFill().equals(Color.GREEN)){
                 i.setFill(Personnages.getGrass());
             }
             if (i.getFill().equals(Color.RED)){
-                i.setFill(obstaclePattern);
+                i.setFill(arbrePattern);
             }
         }
     }
@@ -104,7 +106,7 @@ public class Map{
         return map ;
     }
 
-    public static ImagePattern getObstacle() {return obstaclePattern ;}
+    public static ImagePattern getObstacle() {return arbrePattern ;}
     public static ImagePattern getMur0() {return mur0Pattern ;}
 
 }
