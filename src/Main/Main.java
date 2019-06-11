@@ -21,17 +21,17 @@ public class Main extends Application {
     public static Stage getStage() {
         return primaryStage;
     }
-
+    public static Scene scene4;
     public static Scene scene3;
     static Pane root = new Pane();
     //scene= scene du jeu
     //scene1=scene du menu
     //scene2=scene des règles du jeu
-    private static Personnages boss0 = new Personnages("hades", 64 * 7, 64 * 7, 10, 20, 512, 10);
-    private static Personnages boss = new Personnages("poseidon", 64 * 7, 64 * 7, 10, 20, 512, 10);
-    private static Personnages boss1 = new Personnages("aphrodite", 64 * 7, 64 * 7, 10, 20, 512, 10);
-    private static Personnages boss2 = new Personnages("zeus", 64 * 7, 64 * 7, 10, 20, 512, 10);
-    private static Personnages hero = new Personnages("hero", (int) Personnages.getDeplacement(), (int) Personnages.getDeplacement(), 100, 20, 20, 10);
+    private static Personnages boss0 = new Personnages("hades", 64 * 7, 64 * 7, 100, 20, 512, 10);
+    private static Personnages boss = new Personnages("poseidon", 64 * 7, 64 * 7, 100, 20, 512, 10);
+    private static Personnages boss1 = new Personnages("aphrodite", 64 * 7, 64 * 7, 100, 20, 512, 10);
+    private static Personnages boss2 = new Personnages("zeus", 64 * 7, 64 * 7, 100, 20, 512, 10);
+    private static Personnages hero = new Personnages("hero", (int) Personnages.getDeplacement(), (int) Personnages.getDeplacement(), 10, 20, 20, 10);
 
     public void start(Stage stage) {
         primaryStage = stage;
@@ -82,7 +82,7 @@ public class Main extends Application {
 
 
 
-        primaryStage.setTitle("B²-4AC");
+        primaryStage.setTitle("Bomberman Odyssey");
         StackPane layout2 = new StackPane();
         layout1.getChildren().add(button1);
         layout1.getChildren().add(button2);
@@ -147,6 +147,30 @@ public class Main extends Application {
         root5.getChildren().add(layout4) ;
 
 
+        Button button5 = new Button("Quitter");
+        button5.setOnAction(e -> System.exit(0));
+
+        button5.setPrefWidth(170);
+        button5.setPrefHeight(50);
+        button5.setFont(Font.font("Verdana", 20));
+
+        StackPane layout5 = new StackPane();
+        layout5.setLayoutX(331);
+        layout5.setLayoutY(600);
+        layout5.getChildren().add(button5);
+        root6.getChildren().add(layout5);
+
+
+        StackPane layout6 = new StackPane();
+        String messagePerdu = "vous avez perdu" ;
+        text.setText(messagePerdu);
+        text.setFont(Font.font("Verdana",40));
+        layout6.getChildren().add(text) ;
+        layout6.setLayoutX(250);
+        layout6.setLayoutY(300);
+        root6.getChildren().add(layout6);
+
+        root6.setBackground(new Background(menu));
 
         root.getChildren().addAll(Map.getMap());
 
@@ -160,7 +184,7 @@ public class Main extends Application {
         root.getChildren().add(boss.getViePersonnage());
 
         scene3 = new Scene(root5, 832, 832);
-
+        scene4=new Scene(root6,832,832);
         scene = new Scene(root, 832, 832);
         //primaryStage.setScene(scene) ;
 
@@ -197,11 +221,11 @@ public class Main extends Application {
 
     public static Scene getScene3() { return scene3 ;}
 
+    public static Scene getScene4() {return scene4;}
+
     public static Pane getRoot() {
         return root;
     }
-
-
 
     public static void main(String[] args) {
         launch(args);

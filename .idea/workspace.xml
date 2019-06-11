@@ -28,61 +28,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1771">
-              <caret line="33" column="81" selection-start-line="33" selection-start-column="81" selection-end-line="33" selection-end-column="81" />
+            <state relative-caret-position="541">
+              <caret line="168" column="30" selection-start-line="168" selection-start-column="30" selection-end-line="168" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#525#526#0" expanded="true" />
                 <element signature="e#560#561#0" expanded="true" />
-                <element signature="e#5800#5801#0" expanded="true" />
-                <element signature="e#5827#5828#0" expanded="true" />
-                <element signature="e#5871#5872#0" expanded="true" />
-                <element signature="e#5899#5900#0" expanded="true" />
-                <element signature="e#5943#5944#0" expanded="true" />
-                <element signature="e#5971#5972#0" expanded="true" />
-                <element signature="e#6015#6016#0" expanded="true" />
-                <element signature="e#6043#6044#0" expanded="true" />
-                <element signature="e#6086#6087#0" expanded="true" />
-                <element signature="e#6113#6114#0" expanded="true" />
-                <element signature="e#6165#6166#0" expanded="true" />
-                <element signature="e#6197#6198#0" expanded="true" />
-                <element signature="e#6289#6290#0" expanded="true" />
-                <element signature="e#6316#6317#0" expanded="true" />
-                <element signature="e#6364#6365#0" expanded="true" />
-                <element signature="e#6392#6393#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Hero/Personnages.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="470" column="14" selection-start-line="470" selection-start-column="14" selection-end-line="470" selection-end-column="14" />
+            <state relative-caret-position="663">
+              <caret line="471" column="8" selection-start-line="471" selection-start-column="8" selection-end-line="471" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3603#3604#0" expanded="true" />
                 <element signature="e#3631#3632#0" expanded="true" />
-                <element signature="e#27253#27254#0" expanded="true" />
-                <element signature="e#27271#27272#0" expanded="true" />
-                <element signature="e#27293#27294#0" expanded="true" />
-                <element signature="e#27310#27311#0" expanded="true" />
-                <element signature="e#27339#27340#0" expanded="true" />
-                <element signature="e#27364#27365#0" expanded="true" />
-                <element signature="e#27403#27404#0" expanded="true" />
-                <element signature="e#27436#27437#0" expanded="true" />
-                <element signature="e#27476#27477#0" expanded="true" />
-                <element signature="e#27518#27519#0" expanded="true" />
-                <element signature="e#27559#27560#0" expanded="true" />
-                <element signature="e#27586#27587#0" expanded="true" />
-                <element signature="e#27615#27616#0" expanded="true" />
-                <element signature="e#27637#27638#0" expanded="true" />
-                <element signature="e#27667#27668#0" expanded="true" />
-                <element signature="e#27689#27690#0" expanded="true" />
+                <element signature="e#26498#26499#0" expanded="true" />
+                <element signature="e#26537#26538#0" expanded="true" />
+                <element signature="e#26591#26592#0" expanded="true" />
+                <element signature="e#26663#26664#0" expanded="true" />
+                <element signature="e#26745#26746#0" expanded="true" />
+                <element signature="e#26813#26814#0" expanded="true" />
+                <element signature="e#26864#26865#0" expanded="true" />
+                <element signature="e#26916#26917#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -129,8 +105,8 @@
         <option value="$PROJECT_DIR$/src/Main/Threads.java" />
         <option value="$PROJECT_DIR$/src/Hero/Bot.java" />
         <option value="$PROJECT_DIR$/src/Map/Map.java" />
-        <option value="$PROJECT_DIR$/src/Main/Main.java" />
         <option value="$PROJECT_DIR$/src/Hero/Personnages.java" />
+        <option value="$PROJECT_DIR$/src/Main/Main.java" />
       </list>
     </option>
   </component>
@@ -157,22 +133,6 @@
             <path>
               <item name="Bomberman" type="b2602c69:ProjectViewProjectNode" />
               <item name="IDEA projet" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Bomberman" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IDEA projet" type="462c0819:PsiDirectoryNode" />
-              <item name="sprite" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Bomberman" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IDEA projet" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Bomberman" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IDEA projet" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Hero" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -280,7 +240,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="176368000" />
+    <option name="totallyTimeSpent" value="178344000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -295,7 +255,7 @@
     <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.16107382" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.16311301" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -485,58 +445,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1771">
-          <caret line="33" column="81" selection-start-line="33" selection-start-column="81" selection-end-line="33" selection-end-column="81" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#525#526#0" expanded="true" />
-            <element signature="e#560#561#0" expanded="true" />
-            <element signature="e#5800#5801#0" expanded="true" />
-            <element signature="e#5827#5828#0" expanded="true" />
-            <element signature="e#5871#5872#0" expanded="true" />
-            <element signature="e#5899#5900#0" expanded="true" />
-            <element signature="e#5943#5944#0" expanded="true" />
-            <element signature="e#5971#5972#0" expanded="true" />
-            <element signature="e#6015#6016#0" expanded="true" />
-            <element signature="e#6043#6044#0" expanded="true" />
-            <element signature="e#6086#6087#0" expanded="true" />
-            <element signature="e#6113#6114#0" expanded="true" />
-            <element signature="e#6165#6166#0" expanded="true" />
-            <element signature="e#6197#6198#0" expanded="true" />
-            <element signature="e#6289#6290#0" expanded="true" />
-            <element signature="e#6316#6317#0" expanded="true" />
-            <element signature="e#6364#6365#0" expanded="true" />
-            <element signature="e#6392#6393#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Hero/Personnages.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="470" column="14" selection-start-line="470" selection-start-column="14" selection-end-line="470" selection-end-column="14" />
+        <state relative-caret-position="663">
+          <caret line="471" column="8" selection-start-line="471" selection-start-column="8" selection-end-line="471" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3603#3604#0" expanded="true" />
             <element signature="e#3631#3632#0" expanded="true" />
-            <element signature="e#27253#27254#0" expanded="true" />
-            <element signature="e#27271#27272#0" expanded="true" />
-            <element signature="e#27293#27294#0" expanded="true" />
-            <element signature="e#27310#27311#0" expanded="true" />
-            <element signature="e#27339#27340#0" expanded="true" />
-            <element signature="e#27364#27365#0" expanded="true" />
-            <element signature="e#27403#27404#0" expanded="true" />
-            <element signature="e#27436#27437#0" expanded="true" />
-            <element signature="e#27476#27477#0" expanded="true" />
-            <element signature="e#27518#27519#0" expanded="true" />
-            <element signature="e#27559#27560#0" expanded="true" />
-            <element signature="e#27586#27587#0" expanded="true" />
-            <element signature="e#27615#27616#0" expanded="true" />
-            <element signature="e#27637#27638#0" expanded="true" />
-            <element signature="e#27667#27668#0" expanded="true" />
-            <element signature="e#27689#27690#0" expanded="true" />
+            <element signature="e#26498#26499#0" expanded="true" />
+            <element signature="e#26537#26538#0" expanded="true" />
+            <element signature="e#26591#26592#0" expanded="true" />
+            <element signature="e#26663#26664#0" expanded="true" />
+            <element signature="e#26745#26746#0" expanded="true" />
+            <element signature="e#26813#26814#0" expanded="true" />
+            <element signature="e#26864#26865#0" expanded="true" />
+            <element signature="e#26916#26917#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="541">
+          <caret line="168" column="30" selection-start-line="168" selection-start-column="30" selection-end-line="168" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#525#526#0" expanded="true" />
+            <element signature="e#560#561#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -469,7 +469,7 @@ public class Personnages  {
               if (cptBoss == 4) { Main.getStage().setScene(Main.getScene3());}
 
              }
-
+        if (Main.getHero().hp<=0){Main.getStage().setScene(Main.getScene4());}
         }
 
 
