@@ -79,7 +79,7 @@ public class Personnages  {
         Image ibas2 = ImageLoader.get().load(nom+"Bas2.png") ;
         Image igauche1 = ImageLoader.get().load(nom+"Gauche1.png") ;
         Image igauche2 = ImageLoader.get().load(nom+"Gauche2.png") ;
-        Image ibombe = ImageLoader.get().load("bombe_eau.png")  ;
+        Image ibombe = ImageLoader.get().load("bomb"+nom+".png")  ;
 
         sprite[0]=new ImagePattern(ihaut1);
         sprite[1]=new ImagePattern(ihaut2);
@@ -416,7 +416,8 @@ public class Personnages  {
                 Main.getBoss().setViePersonnage(Main.getBoss().getHp());
                 Main.getBoss().setSprite(Main.getBoss1().getSprite());
                 Main.getBoss().getRectangle().setFill(Main.getBoss().getSprite()[4]);
-
+                Main.getBoss().getCircle().setFill(Main.getBoss().getSprite()[8]);
+                Main.getBoss().getCircle2().setFill(Main.getBoss().getSprite()[8]);
                 Main.getHero().getRectangle().setY(Personnages.getDeplacement());
                 Main.getHero().getRectangle().setX(Personnages.getDeplacement());
                 Main.getBoss().getRectangle().setX(64*7);
@@ -436,7 +437,8 @@ public class Personnages  {
                 Main.getBoss().setViePersonnage(Main.getBoss().getHp());
                 Main.getBoss().setSprite(Main.getBoss2().getSprite());
                 Main.getBoss().getRectangle().setFill(Main.getBoss().getSprite()[4]);
-
+                Main.getBoss().getCircle().setFill(Main.getBoss().getSprite()[8]);
+                Main.getBoss().getCircle2().setFill(Main.getBoss().getSprite()[8]);
                 Main.getHero().getRectangle().setY(Personnages.getDeplacement());
                 Main.getHero().getRectangle().setX(Personnages.getDeplacement());
 
@@ -454,6 +456,8 @@ public class Personnages  {
                 Main.getBoss().setViePersonnage(Main.getBoss().getHp());
                 Main.getBoss().setSprite(Main.getBoss0().getSprite());
                 Main.getBoss().getRectangle().setFill(Main.getBoss().getSprite()[4]);
+                Main.getBoss().getCircle().setFill(Main.getBoss().getSprite()[8]);
+                Main.getBoss().getCircle2().setFill(Main.getBoss().getSprite()[8]);
 
                 Main.getHero().getRectangle().setY(Personnages.getDeplacement());
                 Main.getHero().getRectangle().setX(Personnages.getDeplacement());
@@ -462,50 +466,9 @@ public class Personnages  {
 
             }
 
-             if (cptBoss==4) {
-
-                 Main.getBoss().setHp(Main.getBoss1().getHp());
-
-                 Main.getBoss().setHp(Main.getBoss1().getHp());
-                 Main.getBoss().setViePersonnage(Main.getBoss().getHp());
-                 Main.getBoss().setSprite(Main.getBoss1().getSprite());
-                 Main.getBoss().getRectangle().setFill(Main.getBoss().getSprite()[4]);
-
-                 Main.getHero().getRectangle().setY(Personnages.getDeplacement());
-                 Main.getHero().getRectangle().setX(Personnages.getDeplacement());
-
-                 Main.getBoss().getRectangle().setX(64 * 7);
-                 Main.getBoss().getRectangle().setY(64 * 7);
+              if (cptBoss == 4) { Main.getStage().setScene(Main.getScene3());}
 
              }
-
-              if (cptBoss==5) {
-
-                  Main.getBoss().setHp(Main.getBoss2().getHp());
-                  Main.getBoss().setViePersonnage(Main.getBoss().getHp());
-                  Main.getBoss().setSprite(Main.getBoss2().getSprite());
-                  Main.getBoss().getRectangle().setFill(Main.getBoss().getSprite()[4]);
-
-
-                  Main.getHero().getRectangle().setY(Personnages.getDeplacement());
-                  Main.getHero().getRectangle().setX(Personnages.getDeplacement());
-                  Main.getBoss().getRectangle().setX(64*7);
-                  Main.getBoss().getRectangle().setY(64*7);
-
-              }
-
-              if (cptBoss == 1) { Main.getStage().setScene(Main.getScene3());}
-
-
-
-
-             }
-
-
-
-
-
-
 
         }
 

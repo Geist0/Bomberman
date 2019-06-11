@@ -27,11 +27,11 @@ public class Main extends Application {
     //scene= scene du jeu
     //scene1=scene du menu
     //scene2=scene des règles du jeu
-    private static Personnages boss0 = new Personnages("poseidon", 64 * 7, 64 * 7, 10, 20, 512, 10);
+    private static Personnages boss0 = new Personnages("hades", 64 * 7, 64 * 7, 10, 20, 512, 10);
     private static Personnages boss = new Personnages("poseidon", 64 * 7, 64 * 7, 10, 20, 512, 10);
     private static Personnages boss1 = new Personnages("aphrodite", 64 * 7, 64 * 7, 10, 20, 512, 10);
     private static Personnages boss2 = new Personnages("zeus", 64 * 7, 64 * 7, 10, 20, 512, 10);
-    private static Personnages hero = new Personnages("poseidon", (int) Personnages.getDeplacement(), (int) Personnages.getDeplacement(), 100, 20, 20, 10);
+    private static Personnages hero = new Personnages("hero", (int) Personnages.getDeplacement(), (int) Personnages.getDeplacement(), 100, 20, 20, 10);
 
     public void start(Stage stage) {
         primaryStage = stage;
@@ -134,7 +134,7 @@ public class Main extends Application {
         VBox layout3 = new VBox(40) ;
         VBox layout4 = new VBox(40) ;
         Text text = new Text();
-        String messageFin = "vous avez perdu" ;
+        String messageFin = "vous avez gagné" ;
         text.setText(messageFin);
         text.setFont(Font.font("Verdana",40));
         layout4.getChildren().add(text) ;
