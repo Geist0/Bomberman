@@ -1,7 +1,9 @@
 package Hero;
-import Map.Map;
+
 import Main.Main;
+import Map.Map;
 import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -9,19 +11,11 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 import javafx.util.Duration;
-import javafx.animation.KeyValue ;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import java.io.File;
-import java.net.URL;
-import java.nio.file.Paths;
 
 public class Personnages  {
     int cptBoss= 0 ;
@@ -409,28 +403,56 @@ public class Personnages  {
         if (Main.getBoss().getHp() <=0 ) {
             cptBoss++ ;
             if (cptBoss == 1) {
+                Timeline apparitionRectangle = new Timeline();
+                int rand = (int) (Math.random() * 2);
+                    if(rand==0){
+                        apparitionRectangle.getKeyFrames().addAll( new KeyFrame(Duration.ZERO, new KeyValue(Main.getRequin().opacityProperty(),1)),
+                            new KeyFrame(Duration.millis(100000), new KeyValue(Main.getRequin().opacityProperty(),0)));
 
-                Main.getHero().setHp(100);
-                Main.getHero().setViePersonnage(Main.getHero().getHp());
-                Main.getBoss().setHp(Main.getBoss1().getHp());
-                Main.getBoss().setViePersonnage(Main.getBoss().getHp());
-                Main.getBoss().setSprite(Main.getBoss1().getSprite());
-                Main.getBoss().getRectangle().setFill(Main.getBoss().getSprite()[4]);
-                Main.getBoss().getCircle().setFill(Main.getBoss().getSprite()[8]);
-                Main.getBoss().getCircle2().setFill(Main.getBoss().getSprite()[8]);
-                Main.getHero().getRectangle().setY(Personnages.getDeplacement());
-                Main.getHero().getRectangle().setX(Personnages.getDeplacement());
-                Main.getBoss().getRectangle().setX(64*7);
-                Main.getBoss().getRectangle().setY(64*7);
+                        Main.getHero().setHp(120);
+                        Main.getHero().setViePersonnage(Main.getHero().getHp());
+                        Main.getBoss().setHp(Main.getBoss1().getHp());
+                        Main.getBoss().setViePersonnage(Main.getBoss().getHp());
+                        Main.getBoss().setSprite(Main.getBoss1().getSprite());
+                        Main.getBoss().getRectangle().setFill(Main.getBoss().getSprite()[4]);
+                        Main.getBoss().getCircle().setFill(Main.getBoss().getSprite()[8]);
+                        Main.getBoss().getCircle2().setFill(Main.getBoss().getSprite()[8]);
+                        Main.getHero().getRectangle().setY(Personnages.getDeplacement());
+                        Main.getHero().getRectangle().setX(Personnages.getDeplacement());
+                        Main.getBoss().getRectangle().setX(64*7);
+                        Main.getBoss().getRectangle().setY(64*7);
+                        apparitionRectangle.play();
 
-                //Map.mapReset();
-                //Map.putMapImage();
+                    }
+                    else{
+                        apparitionRectangle.getKeyFrames().addAll( new KeyFrame(Duration.ZERO, new KeyValue(Main.getTrident().opacityProperty(),1)),
+                                new KeyFrame(Duration.millis(100000), new KeyValue(Main.getTrident().opacityProperty(),0)));
 
+                        Main.getHero().setHp(100);
+                        Main.getHero().setDamages(35);
+                        Main.getHero().setViePersonnage(Main.getHero().getHp());
+                        Main.getBoss().setHp(Main.getBoss1().getHp());
+                        Main.getBoss().setViePersonnage(Main.getBoss().getHp());
+                        Main.getBoss().setSprite(Main.getBoss1().getSprite());
+                        Main.getBoss().getRectangle().setFill(Main.getBoss().getSprite()[4]);
+                        Main.getBoss().getCircle().setFill(Main.getBoss().getSprite()[8]);
+                        Main.getBoss().getCircle2().setFill(Main.getBoss().getSprite()[8]);
+                        Main.getHero().getRectangle().setY(Personnages.getDeplacement());
+                        Main.getHero().getRectangle().setX(Personnages.getDeplacement());
+                        Main.getBoss().getRectangle().setX(64*7);
+                        Main.getBoss().getRectangle().setY(64*7);
+                        apparitionRectangle.play();
+                        }
 
             }
 
             if (cptBoss == 2) {
-                Main.getHero().setHp(100);
+                Timeline apparitionRectangle2 = new Timeline();
+                apparitionRectangle2.getKeyFrames().addAll( new KeyFrame(Duration.ZERO, new KeyValue(Main.getCoeurAphrodite().opacityProperty(),1)),
+                        new KeyFrame(Duration.millis(100000), new KeyValue(Main.getCoeurAphrodite().opacityProperty(),0)));
+
+
+                Main.getHero().setHp(120);
                 Main.getHero().setViePersonnage(Main.getHero().getHp());
 
                 Main.getBoss().setHp(Main.getBoss2().getHp());
@@ -444,10 +466,14 @@ public class Personnages  {
 
                 Main.getBoss().getRectangle().setX(64*7);
                 Main.getBoss().getRectangle().setY(64*7);
-
+                apparitionRectangle2.play();
             }
 
             if (cptBoss == 3) {
+
+                Timeline apparitionRectangle3 = new Timeline();
+                apparitionRectangle3.getKeyFrames().addAll( new KeyFrame(Duration.ZERO, new KeyValue(Main.getEclair().opacityProperty(),1)),
+                        new KeyFrame(Duration.millis(100000), new KeyValue(Main.getEclair().opacityProperty(),0)));
 
                 Main.getHero().setHp(100);
                 Main.getHero().setViePersonnage(Main.getHero().getHp());
@@ -463,6 +489,7 @@ public class Personnages  {
                 Main.getHero().getRectangle().setX(Personnages.getDeplacement());
                 Main.getBoss().getRectangle().setX(64 * 7);
                 Main.getBoss().getRectangle().setY(64 * 7);
+                apparitionRectangle3.play();
 
             }
 
@@ -494,7 +521,11 @@ public void setHp(int hp) {
         this.hp = hp ;
 }
 
-public Rectangle getViePersonnage() {
+public void setDamages(int damages) {
+        this.damages = damages;
+    }
+
+    public Rectangle getViePersonnage() {
         return viePersonnage ;
 }
 

@@ -1,14 +1,15 @@
 package Main;
 
+import Hero.ImageLoader;
 import Hero.Personnages;
 import Map.Map;
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -28,10 +29,14 @@ public class Main extends Application {
     //scene1=scene du menu
     //scene2=scene des règles du jeu
     private static Personnages boss0 = new Personnages("hades", 64 * 7, 64 * 7, 100, 20, 512, 10);
-    private static Personnages boss = new Personnages("poseidon", 64 * 7, 64 * 7, 100, 20, 512, 10);
+    private static Personnages boss = new Personnages("poseidon", 64 * 7, 64 * 7, 10, 20, 512, 10);
     private static Personnages boss1 = new Personnages("aphrodite", 64 * 7, 64 * 7, 100, 20, 512, 10);
     private static Personnages boss2 = new Personnages("zeus", 64 * 7, 64 * 7, 100, 20, 512, 10);
     private static Personnages hero = new Personnages("hero", (int) Personnages.getDeplacement(), (int) Personnages.getDeplacement(), 10, 20, 20, 10);
+    private static Rectangle eclair=new Rectangle(64,64);
+    private static Rectangle coeurAphrodite=new Rectangle(64,64);
+    private static Rectangle requin=new Rectangle(64,64);
+    private static Rectangle trident=new Rectangle(64,64);
 
     public void start(Stage stage) {
         primaryStage = stage;
@@ -186,8 +191,12 @@ public class Main extends Application {
         scene3 = new Scene(root5, 832, 832);
         scene4=new Scene(root6,832,832);
         scene = new Scene(root, 832, 832);
-        //primaryStage.setScene(scene) ;
 
+
+       creerRect(eclair,"eclair");
+       creerRect(trident,"trident");
+       creerRect(coeurAphrodite,"coeurAphro");
+       creerRect(requin,"requin");
 
         primaryStage.setScene(scene1);
         primaryStage.setTitle("title here");
@@ -225,6 +234,30 @@ public class Main extends Application {
 
     public static Pane getRoot() {
         return root;
+
+    }
+
+    public void creerRect(Rectangle nom,String objet){
+        nom.setX(384);
+        nom.setY(384);
+        Image bomb = ImageLoader.get().load(objet+".png");
+        nom.setFill(new ImagePattern(bomb));
+        nom.opacityProperty().set(0);}
+
+    public static Rectangle getEclair() {
+        return eclair;
+    }
+
+    public static Rectangle getCoeurAphrodite() {
+        return coeurAphrodite;
+    }
+
+    public static Rectangle getRequin() {
+        return requin;
+    }
+
+    public static Rectangle getTrident() {
+        return trident;
     }
 
     public static void main(String[] args) {
