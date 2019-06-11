@@ -128,7 +128,7 @@ public class Map{
     }
 
     public static ImagePattern getObstacle() {return arbrePattern ;}
-    public static Image getObstacle1() {return obstacle ;}
+    public static ImagePattern getObstacle1() {return obstaclePattern ;}
     public static ImagePattern getMur0() {return mur0Pattern ;}
 
 }

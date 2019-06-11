@@ -14,6 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.animation.KeyValue ;
 import javafx.scene.media.Media;
@@ -253,10 +254,6 @@ public class Personnages  {
         int cptBas = 0;
 
 
-        String 
-
-
-
 
 
 
@@ -269,7 +266,7 @@ public class Personnages  {
 
             }
             if (circle.getCenterY() + circle.getRadius() == i.getY() && circle.getCenterX() - i.getWidth() / 2 == i.getX()
-                    && i.getFill() == Map.getMur0()) {
+                    && i.getFill() == Map.getObstacle1()) {
                 cptBas++;
             }
 
@@ -278,7 +275,7 @@ public class Personnages  {
                 cptHaut++;
             }
             if (circle.getCenterY() + circle.getRadius() - deplacement - i.getHeight() == i.getY()
-                    && circle.getCenterX() - i.getWidth() / 2 == i.getX() && i.getFill() == Map.getMur0()) {
+                    && circle.getCenterX() - i.getWidth() / 2 == i.getX() && i.getFill() == Map.getObstacle1()) {
                 cptHaut++;
             }
 
@@ -287,7 +284,7 @@ public class Personnages  {
                 cptGauche++;
             }
             if (circle.getCenterX() + i.getWidth() / 2 == i.getX()
-                    && circle.getCenterY() - i.getHeight() + circle.getRadius() == i.getY() && i.getFill() == Map.getMur0()) {
+                    && circle.getCenterY() - i.getHeight() + circle.getRadius() == i.getY() && i.getFill() == Map.getObstacle1()) {
                 cptGauche++;
             }
 
@@ -296,7 +293,7 @@ public class Personnages  {
                 cptDroite++;
             }
             if (circle.getCenterX() - i.getWidth() / 2 - deplacement == i.getX()
-                    && circle.getCenterY() - i.getHeight() + circle.getRadius() == i.getY() && i.getFill() == Map.getMur0()) {
+                    && circle.getCenterY() - i.getHeight() + circle.getRadius() == i.getY() && i.getFill() == Map.getObstacle1()) {
                 cptDroite++;
             }
 
@@ -497,6 +494,8 @@ public class Personnages  {
 
               }
 
+              if (cptBoss == 1) { Main.getStage().setScene(Main.getScene3());}
+
 
 
 
@@ -576,4 +575,5 @@ public void setSprite(ImagePattern[] sprite){ this.sprite[0] = sprite[0];
 
 
     }
+
 }
