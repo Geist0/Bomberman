@@ -11,10 +11,14 @@ public class Map{
     static private Case[] listeCase;
     static private final int MAX=169;
     static Rectangle[] mapRectangle = new Rectangle[169] ;
+
+
     static public Case[] creation(){
         listeCase=new Case[MAX];
         return listeCase;
     }
+
+
     static Image mur0 = ImageLoader.get().load("mur0.png") ;
     private static ImagePattern mur0Pattern = new ImagePattern(mur0) ;
     static Image arbre = ImageLoader.get().load("grass.png") ;
@@ -67,6 +71,23 @@ public class Map{
         return mapRectangle ;
     }
 
+
+   /* public static void mapReset() {
+        Case[] cases = Map.creation();
+        cases = Map.creationCase(cases);
+        for (int i=0;i<169;i++){
+            int x=(i/13);
+            int y=(i-(x*13));
+            Rectangle rectangle = new Rectangle(x* Personnages.getDeplacement(),y*Personnages.getDeplacement(),Personnages.getDeplacement(),Personnages.getDeplacement());
+            rectangle.setFill(cases[i].getColor());
+            Map.map[i] = rectangle ;
+        }
+
+    }
+*/
+
+
+
     public static void putMapImage() {
         for(Rectangle i : map ) {
             if (i.getFill().equals(Color.BLACK) && (i.getY()== i.getHeight()*12 || i.getY() == 0) && i.getX() != 0 && i.getX() != i.getWidth()*12  ) {
@@ -107,6 +128,7 @@ public class Map{
     }
 
     public static ImagePattern getObstacle() {return arbrePattern ;}
+    public static Image getObstacle1() {return obstacle ;}
     public static ImagePattern getMur0() {return mur0Pattern ;}
 
 }

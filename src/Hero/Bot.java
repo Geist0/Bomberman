@@ -131,13 +131,13 @@ public class Bot {
         int rand;
         ImagePattern[] sprite = bot.getSprite();
         while (bot.getVivant()) {
-            rand = (int) (Math.random() * 100);
+            rand = (int) (Math.random() * 50000001);
             if (bombNearby(bot.getCircle(), bot) || bombNearby(bot.getCircle2(), bot)) {
-                if (rand <= 90) {
+                if (rand <= 1) {
                     bouger(bot, sprite);
                 }
             } else {
-                if (rand <= 90) {
+                if (rand <= 1) {
                     bouger(bot, sprite);
                 }
             }

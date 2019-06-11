@@ -23,6 +23,7 @@ import java.net.URL;
 import java.nio.file.Paths;
 
 public class Personnages  {
+    int cptBoss= 0 ;
     private String nom;
     private int hp ;
     private Circle circle ;
@@ -252,6 +253,12 @@ public class Personnages  {
         int cptBas = 0;
 
 
+        String 
+
+
+
+
+
 
         for (Rectangle i : Map.getMap()) {
             if (circle.getCenterY() + circle.getRadius() == i.getY() && circle.getCenterX() - i.getWidth() / 2 == i.getX()
@@ -387,9 +394,9 @@ public class Personnages  {
             this.hp -= this.damages;
             this.setViePersonnage(this.hp);
         } else if ((circle.getCenterX() - rectangle.getWidth() / 2 - deplacement <= rectangle.getX() && rectangle.getX() <= circle.getCenterX() - rectangle.getHeight() / 2 && circle.getCenterY() - rectangle.getHeight() + circle.getRadius() == rectangle.getY())
-                || (circle.getCenterX() - rectangle.getWidth() / 2 - (deplacement * 2) <= rectangle.getX()
+                 || (circle.getCenterX() - rectangle.getWidth() / 2 - (deplacement * 2) <= rectangle.getX()
                 && circle.getCenterX() - rectangle.getWidth() / 2 - (deplacement) >= rectangle.getX() && circle.getCenterY() - rectangle.getHeight() + circle.getRadius() == rectangle.getY()
-                && cptDroite == 0)) {
+                && cptDroite == 0)){
 
             this.hp -= this.damages;
             this.setViePersonnage(this.hp);
@@ -402,15 +409,106 @@ public class Personnages  {
 
         }
 
-        if (boss.getHp() <=0 ) {
-            System.out.println("coucou");
-            boss.rectangle.setFill(new ImagePattern(new Image("aphroditeBas1.png"))); ;
+        if (Main.getBoss().getHp() <=0 ) {
+            cptBoss++ ;
+            if (cptBoss == 1) {
+
+                Main.getHero().setHp(100);
+                Main.getHero().setViePersonnage(Main.getHero().getHp());
+                Main.getBoss().setHp(Main.getBoss1().getHp());
+                Main.getBoss().setViePersonnage(Main.getBoss().getHp());
+                Main.getBoss().setSprite(Main.getBoss1().getSprite());
+                Main.getBoss().getRectangle().setFill(Main.getBoss().getSprite()[4]);
+
+                Main.getHero().getRectangle().setY(Personnages.getDeplacement());
+                Main.getHero().getRectangle().setX(Personnages.getDeplacement());
+                Main.getBoss().getRectangle().setX(64*7);
+                Main.getBoss().getRectangle().setY(64*7);
+
+                //Map.mapReset();
+                //Map.putMapImage();
+
+
+            }
+
+            if (cptBoss == 2) {
+                Main.getHero().setHp(100);
+                Main.getHero().setViePersonnage(Main.getHero().getHp());
+
+                Main.getBoss().setHp(Main.getBoss2().getHp());
+                Main.getBoss().setViePersonnage(Main.getBoss().getHp());
+                Main.getBoss().setSprite(Main.getBoss2().getSprite());
+                Main.getBoss().getRectangle().setFill(Main.getBoss().getSprite()[4]);
+
+                Main.getHero().getRectangle().setY(Personnages.getDeplacement());
+                Main.getHero().getRectangle().setX(Personnages.getDeplacement());
+
+                Main.getBoss().getRectangle().setX(64*7);
+                Main.getBoss().getRectangle().setY(64*7);
+
+            }
+
+            if (cptBoss == 3) {
+
+                Main.getHero().setHp(100);
+                Main.getHero().setViePersonnage(Main.getHero().getHp());
+
+                Main.getBoss().setHp(Main.getBoss0().getHp());
+                Main.getBoss().setViePersonnage(Main.getBoss().getHp());
+                Main.getBoss().setSprite(Main.getBoss0().getSprite());
+                Main.getBoss().getRectangle().setFill(Main.getBoss().getSprite()[4]);
+
+                Main.getHero().getRectangle().setY(Personnages.getDeplacement());
+                Main.getHero().getRectangle().setX(Personnages.getDeplacement());
+                Main.getBoss().getRectangle().setX(64 * 7);
+                Main.getBoss().getRectangle().setY(64 * 7);
+
+            }
+
+             if (cptBoss==4) {
+
+                 Main.getBoss().setHp(Main.getBoss1().getHp());
+
+                 Main.getBoss().setHp(Main.getBoss1().getHp());
+                 Main.getBoss().setViePersonnage(Main.getBoss().getHp());
+                 Main.getBoss().setSprite(Main.getBoss1().getSprite());
+                 Main.getBoss().getRectangle().setFill(Main.getBoss().getSprite()[4]);
+
+                 Main.getHero().getRectangle().setY(Personnages.getDeplacement());
+                 Main.getHero().getRectangle().setX(Personnages.getDeplacement());
+
+                 Main.getBoss().getRectangle().setX(64 * 7);
+                 Main.getBoss().getRectangle().setY(64 * 7);
+
+             }
+
+              if (cptBoss==5) {
+
+                  Main.getBoss().setHp(Main.getBoss2().getHp());
+                  Main.getBoss().setViePersonnage(Main.getBoss().getHp());
+                  Main.getBoss().setSprite(Main.getBoss2().getSprite());
+                  Main.getBoss().getRectangle().setFill(Main.getBoss().getSprite()[4]);
+
+
+                  Main.getHero().getRectangle().setY(Personnages.getDeplacement());
+                  Main.getHero().getRectangle().setX(Personnages.getDeplacement());
+                  Main.getBoss().getRectangle().setX(64*7);
+                  Main.getBoss().getRectangle().setY(64*7);
+
+              }
+
+
+
+
+             }
+
+
+
+
 
 
 
         }
-    }
-
 
 
 
@@ -431,7 +529,7 @@ public int getHp() {
 }
 
 public void setHp(int hp) {
-        hp = hp ;
+        this.hp = hp ;
 }
 
 public Rectangle getViePersonnage() {
@@ -466,5 +564,16 @@ public BooleanProperty getEnMarcheUp(){return enMarcheUp;}
 public ImagePattern[] getSprite(){return sprite;}
 
 
-public void setSprite(ImagePattern[] sprite){ this.sprite = sprite ;}
+public void setSprite(ImagePattern[] sprite){ this.sprite[0] = sprite[0];
+    this.sprite[1] = sprite[1];
+    this.sprite[2] = sprite[2];
+    this.sprite[3] = sprite[3];
+    this.sprite[4] = sprite[4];
+    this.sprite[5] = sprite[5];
+    this.sprite[6] = sprite[6];
+    this.sprite[7] = sprite[7];
+    this.sprite[8] = sprite[8] ;
+
+
+    }
 }
