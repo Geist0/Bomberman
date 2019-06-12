@@ -28,49 +28,30 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="526">
-              <caret line="200" column="38" lean-forward="true" selection-start-line="200" selection-start-column="38" selection-end-line="200" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#525#526#0" expanded="true" />
-                <element signature="e#560#561#0" expanded="true" />
-                <element signature="method#getRoot#0;class#Main#0" />
-                <element signature="e#7707#7708#0" expanded="true" />
-                <element signature="e#7736#7737#0" expanded="true" />
-                <element signature="e#7787#7788#0" expanded="true" />
-                <element signature="e#7824#7825#0" expanded="true" />
-                <element signature="e#7867#7868#0" expanded="true" />
-                <element signature="e#7896#7897#0" expanded="true" />
-                <element signature="e#7940#7941#0" expanded="true" />
-                <element signature="e#7970#7971#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="68">
+              <caret line="172" column="27" lean-forward="true" selection-start-line="172" selection-start-column="27" selection-end-line="172" selection-end-column="27" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Hero/Personnages.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5362">
-              <caret line="409" column="61" selection-start-line="409" selection-start-column="61" selection-end-line="409" selection-end-column="61" />
+            <state relative-caret-position="419">
+              <caret line="393" column="195" lean-forward="true" selection-start-line="393" selection-start-column="195" selection-end-line="393" selection-end-column="195" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3603#3604#0" expanded="true" />
-                <element signature="e#3631#3632#0" expanded="true" />
-                <element signature="method#isEmpty#0;class#Personnages#0" />
-                <element signature="e#28944#28945#0" expanded="true" />
-                <element signature="e#28983#28984#0" expanded="true" />
-                <element signature="e#29037#29038#0" expanded="true" />
-                <element signature="e#27533#27534#0" expanded="true" />
-                <element signature="e#27571#27572#0" expanded="true" />
-                <element signature="e#29190#29191#0" expanded="true" />
-                <element signature="e#29272#29273#0" expanded="true" />
-                <element signature="e#29340#29341#0" expanded="true" />
-                <element signature="e#29391#29392#0" expanded="true" />
-                <element signature="e#29443#29444#0" expanded="true" />
+                <element signature="e#29015#29016#0" expanded="true" />
+                <element signature="e#29054#29055#0" expanded="true" />
+                <element signature="e#29108#29109#0" expanded="true" />
+                <element signature="e#29185#29186#0" expanded="true" />
+                <element signature="e#29261#29262#0" expanded="true" />
+                <element signature="e#29343#29344#0" expanded="true" />
+                <element signature="e#29411#29412#0" expanded="true" />
+                <element signature="e#29462#29463#0" expanded="true" />
+                <element signature="e#29514#29515#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -79,7 +60,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Hero/Bot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-952">
+            <state relative-caret-position="867">
               <caret line="57" column="11" selection-start-line="57" selection-start-column="11" selection-end-line="57" selection-end-column="11" />
             </state>
           </provider>
@@ -117,8 +98,8 @@
         <option value="$PROJECT_DIR$/src/Main/Threads.java" />
         <option value="$PROJECT_DIR$/src/Hero/Bot.java" />
         <option value="$PROJECT_DIR$/src/Map/Map.java" />
-        <option value="$PROJECT_DIR$/src/Hero/Personnages.java" />
         <option value="$PROJECT_DIR$/src/Main/Main.java" />
+        <option value="$PROJECT_DIR$/src/Hero/Personnages.java" />
       </list>
     </option>
   </component>
@@ -195,7 +176,7 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main.Main" />
       <module name="IDEA projet" />
-      <option name="VM_PARAMETERS" value="--module-path C:\Users\rosem\OneDrive\Bureau\javafx-sdk-12.0.1\lib --add-modules=javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path C:\Users\Angel\Desktop\javafx-sdk-11.0.2\lib --add-modules=javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="Main.*" />
@@ -253,11 +234,13 @@
       <workItem from="1560164334587" duration="22801000" />
       <workItem from="1560239200320" duration="3284000" />
       <workItem from="1560272579949" duration="3476000" />
+      <workItem from="1560286947024" duration="944000" />
+      <workItem from="1560320144584" duration="2583000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="181644000" />
+    <option name="totallyTimeSpent" value="185171000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -269,7 +252,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.16311301" />
@@ -282,7 +265,7 @@
       <window_info id="Learn" order="7" weight="0.32995737" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32917964" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24714434" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24702059" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -350,12 +333,12 @@
     <entry file="file://$PROJECT_DIR$/sprite/poseidondroite2.gif" />
     <entry file="jar://$PROJECT_DIR$/../JavaFX/javafx-sdk-11.0.2/lib/javafx.graphics.jar!/javafx/scene/canvas/Canvas.class" />
     <entry file="file://$PROJECT_DIR$/src/sample.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="jar://$PROJECT_DIR$/../JavaFX/javafx-sdk-11.0.2/lib/javafx.base.jar!/javafx/util/Duration.class" />
     <entry file="file://$PROJECT_DIR$/src/Hero/Bombe.java">
@@ -457,51 +440,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Hero/Bot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-952">
+        <state relative-caret-position="867">
           <caret line="57" column="11" selection-start-line="57" selection-start-column="11" selection-end-line="57" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Hero/Personnages.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5362">
-          <caret line="409" column="61" selection-start-line="409" selection-start-column="61" selection-end-line="409" selection-end-column="61" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3603#3604#0" expanded="true" />
-            <element signature="e#3631#3632#0" expanded="true" />
-            <element signature="method#isEmpty#0;class#Personnages#0" />
-            <element signature="e#28944#28945#0" expanded="true" />
-            <element signature="e#28983#28984#0" expanded="true" />
-            <element signature="e#29037#29038#0" expanded="true" />
-            <element signature="e#27533#27534#0" expanded="true" />
-            <element signature="e#27571#27572#0" expanded="true" />
-            <element signature="e#29190#29191#0" expanded="true" />
-            <element signature="e#29272#29273#0" expanded="true" />
-            <element signature="e#29340#29341#0" expanded="true" />
-            <element signature="e#29391#29392#0" expanded="true" />
-            <element signature="e#29443#29444#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="526">
-          <caret line="200" column="38" lean-forward="true" selection-start-line="200" selection-start-column="38" selection-end-line="200" selection-end-column="38" />
+        <state relative-caret-position="68">
+          <caret line="172" column="27" lean-forward="true" selection-start-line="172" selection-start-column="27" selection-end-line="172" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Hero/Personnages.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="393" column="195" lean-forward="true" selection-start-line="393" selection-start-column="195" selection-end-line="393" selection-end-column="195" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#525#526#0" expanded="true" />
-            <element signature="e#560#561#0" expanded="true" />
-            <element signature="method#getRoot#0;class#Main#0" />
-            <element signature="e#7707#7708#0" expanded="true" />
-            <element signature="e#7736#7737#0" expanded="true" />
-            <element signature="e#7787#7788#0" expanded="true" />
-            <element signature="e#7824#7825#0" expanded="true" />
-            <element signature="e#7867#7868#0" expanded="true" />
-            <element signature="e#7896#7897#0" expanded="true" />
-            <element signature="e#7940#7941#0" expanded="true" />
-            <element signature="e#7970#7971#0" expanded="true" />
+            <element signature="e#29015#29016#0" expanded="true" />
+            <element signature="e#29054#29055#0" expanded="true" />
+            <element signature="e#29108#29109#0" expanded="true" />
+            <element signature="e#29185#29186#0" expanded="true" />
+            <element signature="e#29261#29262#0" expanded="true" />
+            <element signature="e#29343#29344#0" expanded="true" />
+            <element signature="e#29411#29412#0" expanded="true" />
+            <element signature="e#29462#29463#0" expanded="true" />
+            <element signature="e#29514#29515#0" expanded="true" />
           </folding>
         </state>
       </provider>

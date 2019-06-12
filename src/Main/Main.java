@@ -32,11 +32,11 @@ public class Main extends Application {
     private static Personnages boss = new Personnages("poseidon", 64 * 7, 64 * 7, 10, 20, 512, 10);
     private static Personnages boss1 = new Personnages("aphrodite", 64 * 7, 64 * 7, 100, 20, 512, 10);
     private static Personnages boss2 = new Personnages("zeus", 64 * 7, 64 * 7, 100, 20, 512, 10);
-    private static Personnages hero = new Personnages("hero", (int) Personnages.getDeplacement(), (int) Personnages.getDeplacement(), 10, 20, 20, 10);
-    private static Rectangle eclair=new Rectangle(64,64);
-    private static Rectangle coeurAphrodite=new Rectangle(64,64);
-    private static Rectangle requin=new Rectangle(64,64);
-    private static Rectangle trident=new Rectangle(64,64);
+    private static Personnages hero = new Personnages("hero", (int) Personnages.getDeplacement(), (int) Personnages.getDeplacement(), 100, 20, 20, 10);
+    private static Rectangle eclair=new Rectangle(64,64,128,64);
+    private static Rectangle coeurAphrodite=new Rectangle(64,64,128,64);
+    private static Rectangle requin=new Rectangle(64,64,128,64);
+    private static Rectangle trident=new Rectangle(64,64,128,64);
 
     public void start(Stage stage) {
         primaryStage = stage;
@@ -139,7 +139,9 @@ public class Main extends Application {
         VBox layout3 = new VBox(40) ;
         VBox layout4 = new VBox(40) ;
         Text text = new Text();
+        Text text1 = new Text() ;
         String messageFin = "vous avez gagné" ;
+        String messagePerdu = "vous avez perdu" ;
         text.setText(messageFin);
         text.setFont(Font.font("Verdana",40));
         layout4.getChildren().add(text) ;
@@ -167,10 +169,10 @@ public class Main extends Application {
 
 
         StackPane layout6 = new StackPane();
-        String messagePerdu = "vous avez perdu" ;
-        text.setText(messagePerdu);
-        text.setFont(Font.font("Verdana",40));
-        layout6.getChildren().add(text) ;
+
+        text1.setText(messagePerdu);
+        text1.setFont(Font.font("Verdana",40));
+        layout6.getChildren().add(text1) ;
         layout6.setLayoutX(250);
         layout6.setLayoutY(300);
         root6.getChildren().add(layout6);
@@ -187,6 +189,10 @@ public class Main extends Application {
         root.getChildren().add(boss.getCircle());
         root.getChildren().add(boss.getCircle2());
         root.getChildren().add(boss.getViePersonnage());
+        root.getChildren().add(eclair) ;
+        root.getChildren().add(requin) ;
+        root.getChildren().add(coeurAphrodite) ;
+        root.getChildren().add(trident) ;
 
         scene3 = new Scene(root5, 832, 832);
         scene4=new Scene(root6,832,832);
