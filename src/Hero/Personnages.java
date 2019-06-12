@@ -17,6 +17,8 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
+
+
 public class Personnages  {
     int cptBoss= 0 ;
     private String nom;
@@ -35,6 +37,10 @@ public class Personnages  {
     static private BooleanProperty bombeActive = new SimpleBooleanProperty(true) ;
     private Rectangle rectangle = new Rectangle(15, 15, Personnages.getDeplacement(), Personnages.getDeplacement()) ;
     private boolean vivant;
+    private static Rectangle hades2 = new Rectangle(64,64) ;
+    private static Rectangle poseidon2 = new Rectangle(64,64) ;
+    private static Rectangle aphrodite2 = new Rectangle(64,64) ;
+    private static Rectangle zeus2 = new Rectangle(64,64) ;
 
 
 
@@ -367,7 +373,7 @@ public class Personnages  {
 
 
         }
-        if (this.getNom() == "hero") {
+        //if (this.getNom() == "hero") {
 
             if (((circle.getCenterY() + circle.getRadius() <= rectangle.getY() && circle.getCenterY() + circle.getRadius() + deplacement >= rectangle.getY() )
                     || (circle.getCenterY() + circle.getRadius() + deplacement <= rectangle.getY() && circle.getCenterY() + circle.getRadius() + (deplacement * 2) > rectangle.getY()
@@ -403,47 +409,75 @@ public class Personnages  {
 
 
             }
-        }
+        //}
 
         if (Main.getBoss().getHp() <=0 ) {
             cptBoss++ ;
             if (cptBoss == 1) {
+
+                Map.refillMap(Map.getMap2());
+
                 Timeline apparitionRectangle = new Timeline();
                 int rand = (int) (Math.random() * 2);
                     if(rand==0){
                         apparitionRectangle.getKeyFrames().addAll( new KeyFrame(Duration.ZERO, new KeyValue(Main.getRequin().opacityProperty(),1)),
-                            new KeyFrame(Duration.millis(1000), new KeyValue(Main.getRequin().opacityProperty(),0)));
+                                new KeyFrame(Duration.ZERO, new KeyValue(Main.getRequin().yProperty(),30)),
+                                new KeyFrame(Duration.ZERO, new KeyValue(Main.getBoss().getRectangle().opacityProperty(),0)),
+                                new KeyFrame(Duration.ZERO, new KeyValue(Main.getBoss().getRectangle().xProperty(),768)),
+                                new KeyFrame(Duration.millis(1000), new KeyValue(Personnages.getAphrodite2().yProperty(),64*7)),
+                                new KeyFrame(Duration.millis(999), new KeyValue(Personnages.getAphrodite2().opacityProperty(),1)),
+                                new KeyFrame(Duration.millis(1000), new KeyValue(Personnages.getAphrodite2().opacityProperty(),0)),
+                                new KeyFrame(Duration.millis(999), new KeyValue(Main.getBoss().getRectangle().opacityProperty(),0)),
+                                new KeyFrame(Duration.millis(1000), new KeyValue(Main.getBoss().getRectangle().opacityProperty(),1)),
+                                new KeyFrame(Duration.millis(1000), new KeyValue(Main.getBoss().getRectangle().xProperty(),768)),
+                                new KeyFrame(Duration.millis(4000), new KeyValue(Main.getBoss().getRectangle().xProperty(),64*7)),
+                                new KeyFrame(Duration.millis(4000), new KeyValue(Main.getRequin().yProperty(),0)),
+                            new KeyFrame(Duration.millis(4000), new KeyValue(Main.getRequin().opacityProperty(),0)));
 
                         Main.getHero().setHp(120);
                         Main.getHero().setViePersonnage(Main.getHero().getHp());
+                        Main.getHero().getRectangle().setX(64);
+                        Main.getHero().getRectangle().setY(64);
                         Main.getBoss().setHp(Main.getBoss1().getHp());
                         Main.getBoss().setViePersonnage(Main.getBoss().getHp());
                         Main.getBoss().setSprite(Main.getBoss1().getSprite());
                         Main.getBoss().getRectangle().setFill(Main.getBoss().getSprite()[4]);
                         Main.getBoss().getCircle().setFill(Main.getBoss().getSprite()[8]);
                         Main.getBoss().getCircle2().setFill(Main.getBoss().getSprite()[8]);
-                        Main.getHero().getRectangle().setY(Personnages.getDeplacement());
-                        Main.getHero().getRectangle().setX(Personnages.getDeplacement());
                         Main.getBoss().getRectangle().setX(64*7);
                         Main.getBoss().getRectangle().setY(64*7);
                         apparitionRectangle.play();
 
+
                     }
                     else{
                         apparitionRectangle.getKeyFrames().addAll( new KeyFrame(Duration.ZERO, new KeyValue(Main.getTrident().opacityProperty(),1)),
-                                new KeyFrame(Duration.millis(1000), new KeyValue(Main.getTrident().opacityProperty(),0)));
+                                new KeyFrame(Duration.ZERO, new KeyValue(Main.getTrident().yProperty(),30)),
+                                new KeyFrame(Duration.ZERO, new KeyValue(Main.getBoss().getRectangle().xProperty(),768)),
+                                new KeyFrame(Duration.ZERO, new KeyValue(Main.getBoss().getRectangle().opacityProperty(),0)),
+                                new KeyFrame(Duration.millis(1000), new KeyValue(Personnages.getAphrodite2().yProperty(),64*7)),
+                                new KeyFrame(Duration.millis(999), new KeyValue(Personnages.getAphrodite2().opacityProperty(),1)),
+                                new KeyFrame(Duration.millis(1000), new KeyValue(Personnages.getAphrodite2().opacityProperty(),0)),
+                                new KeyFrame(Duration.millis(999), new KeyValue(Main.getBoss().getRectangle().opacityProperty(),0)),
+                                new KeyFrame(Duration.millis(1000), new KeyValue(Main.getBoss().getRectangle().opacityProperty(),1)),
+
+                                new KeyFrame(Duration.millis(1000), new KeyValue(Main.getBoss().getRectangle().xProperty(),768)),
+                                new KeyFrame(Duration.millis(4000), new KeyValue(Main.getBoss().getRectangle().xProperty(),64*7)),
+                                new KeyFrame(Duration.millis(4000), new KeyValue(Main.getTrident().yProperty(),0)),
+                                new KeyFrame(Duration.millis(4000), new KeyValue(Main.getTrident().opacityProperty(),0)));
 
                         Main.getHero().setHp(100);
                         Main.getHero().setDamages(35);
                         Main.getHero().setViePersonnage(Main.getHero().getHp());
+                        Main.getHero().getRectangle().setX(64);
+                        Main.getHero().getRectangle().setY(64);
+
                         Main.getBoss().setHp(Main.getBoss1().getHp());
                         Main.getBoss().setViePersonnage(Main.getBoss().getHp());
                         Main.getBoss().setSprite(Main.getBoss1().getSprite());
                         Main.getBoss().getRectangle().setFill(Main.getBoss().getSprite()[4]);
                         Main.getBoss().getCircle().setFill(Main.getBoss().getSprite()[8]);
                         Main.getBoss().getCircle2().setFill(Main.getBoss().getSprite()[8]);
-                        Main.getHero().getRectangle().setY(Personnages.getDeplacement());
-                        Main.getHero().getRectangle().setX(Personnages.getDeplacement());
                         Main.getBoss().getRectangle().setX(64*7);
                         Main.getBoss().getRectangle().setY(64*7);
                         apparitionRectangle.play();
@@ -452,13 +486,28 @@ public class Personnages  {
             }
 
             if (cptBoss == 2) {
+                Map.refillMap(Map.getMap2());
                 Timeline apparitionRectangle2 = new Timeline();
                 apparitionRectangle2.getKeyFrames().addAll( new KeyFrame(Duration.ZERO, new KeyValue(Main.getCoeurAphrodite().opacityProperty(),1)),
-                        new KeyFrame(Duration.millis(1000), new KeyValue(Main.getCoeurAphrodite().opacityProperty(),0)));
+                        new KeyFrame(Duration.ZERO, new KeyValue(Main.getCoeurAphrodite().yProperty(),0)),
+                        new KeyFrame(Duration.ZERO, new KeyValue(Main.getBoss().getRectangle().xProperty(),768)),
+                        new KeyFrame(Duration.ZERO, new KeyValue(Main.getBoss().getRectangle().opacityProperty(),0)),
+                        new KeyFrame(Duration.millis(1000), new KeyValue(Personnages.getZeus2().yProperty(),64*7)),
+                        new KeyFrame(Duration.millis(999), new KeyValue(Personnages.getZeus2().opacityProperty(),1)),
+                        new KeyFrame(Duration.millis(1000), new KeyValue(Personnages.getZeus2().opacityProperty(),0)),
+                        new KeyFrame(Duration.millis(999), new KeyValue(Main.getBoss().getRectangle().opacityProperty(),0)),
+                        new KeyFrame(Duration.millis(1000), new KeyValue(Main.getBoss().getRectangle().opacityProperty(),1)),
+
+                        new KeyFrame(Duration.millis(1000), new KeyValue(Main.getBoss().getRectangle().xProperty(),768)),
+                        new KeyFrame(Duration.millis(4000), new KeyValue(Main.getBoss().getRectangle().xProperty(),64*7)),
+                        new KeyFrame(Duration.millis(4000), new KeyValue(Main.getCoeurAphrodite().yProperty(),32)),
+                        new KeyFrame(Duration.millis(4000), new KeyValue(Main.getCoeurAphrodite().opacityProperty(),0)));
 
 
                 Main.getHero().setHp(120);
                 Main.getHero().setViePersonnage(Main.getHero().getHp());
+                Main.getHero().getRectangle().setX(64);
+                Main.getHero().getRectangle().setY(64);
 
                 Main.getBoss().setHp(Main.getBoss2().getHp());
                 Main.getBoss().setViePersonnage(Main.getBoss().getHp());
@@ -466,8 +515,9 @@ public class Personnages  {
                 Main.getBoss().getRectangle().setFill(Main.getBoss().getSprite()[4]);
                 Main.getBoss().getCircle().setFill(Main.getBoss().getSprite()[8]);
                 Main.getBoss().getCircle2().setFill(Main.getBoss().getSprite()[8]);
-                Main.getHero().getRectangle().setY(Personnages.getDeplacement());
-                Main.getHero().getRectangle().setX(Personnages.getDeplacement());
+                Main.getBoss().getRectangle().setFill(Main.getBoss().getSprite()[4]);
+                Main.getBoss().getCircle().setFill(Main.getBoss().getSprite()[8]);
+                Main.getBoss().getCircle2().setFill(Main.getBoss().getSprite()[8]);
 
                 Main.getBoss().getRectangle().setX(64*7);
                 Main.getBoss().getRectangle().setY(64*7);
@@ -475,13 +525,27 @@ public class Personnages  {
             }
 
             if (cptBoss == 3) {
-
+                Map.refillMap(Map.getMap2());
                 Timeline apparitionRectangle3 = new Timeline();
                 apparitionRectangle3.getKeyFrames().addAll( new KeyFrame(Duration.ZERO, new KeyValue(Main.getEclair().opacityProperty(),1)),
-                        new KeyFrame(Duration.millis(1000), new KeyValue(Main.getEclair().opacityProperty(),0)));
+                        new KeyFrame(Duration.ZERO, new KeyValue(Main.getEclair().yProperty(),30)),
+                        new KeyFrame(Duration.ZERO, new KeyValue(Main.getBoss().getRectangle().xProperty(),768)),
+                        new KeyFrame(Duration.ZERO, new KeyValue(Main.getBoss().getRectangle().opacityProperty(),0)),
+                        new KeyFrame(Duration.millis(1000), new KeyValue(Personnages.getHades2().yProperty(),64*7)),
+                        new KeyFrame(Duration.millis(999), new KeyValue(Personnages.getHades2().opacityProperty(),1)),
+                        new KeyFrame(Duration.millis(1000), new KeyValue(Personnages.getHades2().opacityProperty(),0)),
+                        new KeyFrame(Duration.millis(999), new KeyValue(Main.getBoss().getRectangle().opacityProperty(),0)),
+                        new KeyFrame(Duration.millis(1000), new KeyValue(Main.getBoss().getRectangle().opacityProperty(),1)),
+
+                        new KeyFrame(Duration.millis(1000), new KeyValue(Main.getBoss().getRectangle().xProperty(),768)),
+                        new KeyFrame(Duration.millis(4000), new KeyValue(Main.getBoss().getRectangle().xProperty(),64*7)),
+                        new KeyFrame(Duration.millis(4000), new KeyValue(Main.getEclair().yProperty(),0)),
+                        new KeyFrame(Duration.millis(4000), new KeyValue(Main.getEclair().opacityProperty(),0)));
 
                 Main.getHero().setHp(100);
                 Main.getHero().setViePersonnage(Main.getHero().getHp());
+                Main.getHero().getRectangle().setX(64);
+                Main.getHero().getRectangle().setY(64);
 
                 Main.getBoss().setHp(Main.getBoss0().getHp());
                 Main.getBoss().setViePersonnage(Main.getBoss().getHp());
@@ -489,18 +553,30 @@ public class Personnages  {
                 Main.getBoss().getRectangle().setFill(Main.getBoss().getSprite()[4]);
                 Main.getBoss().getCircle().setFill(Main.getBoss().getSprite()[8]);
                 Main.getBoss().getCircle2().setFill(Main.getBoss().getSprite()[8]);
-
-                Main.getHero().getRectangle().setY(Personnages.getDeplacement());
-                Main.getHero().getRectangle().setX(Personnages.getDeplacement());
                 Main.getBoss().getRectangle().setX(64 * 7);
-                Main.getBoss().getRectangle().setY(64 * 7);
                 apparitionRectangle3.play();
 
             }
+            /*if (cptBoss == 4) {
 
-              if (cptBoss == 4) { Main.getStage().setScene(Main.getScene3());}
+                Map.refillMap(Map.getMap2());
 
-             }
+                Timeline apparitionRectangle4 = new Timeline();
+                apparitionRectangle4.getKeyFrames().addAll(
+                        new KeyFrame(Duration.ZERO, new KeyValue(Main.getBoss().getRectangle().xProperty(),832)),
+                        new KeyFrame(Duration.millis(4000), new KeyValue(Main.getBoss().getRectangle().xProperty(),64*7)),
+                        new KeyFrame(Duration.millis(4000), new KeyValue(Main.getEclair().yProperty(),0)),
+                        new KeyFrame(Duration.millis(4000), new KeyValue(Main.getEclair().opacityProperty(),0)));
+
+                Main.getHero().getRectangle().setX(64);
+                Main.getHero().getRectangle().setY(64);
+                Main.getHero().setHp(100);
+                Main.getHero().setViePersonnage(Main.getHero().getHp());
+
+            }*/
+            if (cptBoss == 4) { Main.getStage().setScene(Main.getScene3());}
+
+            }
         if (Main.getHero().hp<=0){Main.getStage().setScene(Main.getScene4());}
         }
 
@@ -551,6 +627,10 @@ public Circle getCircle2() {
 }
 
 public Rectangle getRectangle() { return rectangle ;}
+public static Rectangle getHades2() { return hades2 ;}
+    public static Rectangle getAphrodite2() { return aphrodite2 ;}
+    public static Rectangle getPoseidon2() { return poseidon2 ;}
+    public static Rectangle getZeus2() { return zeus2 ;}
 
 public boolean getVivant(){return vivant;}
 

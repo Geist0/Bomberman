@@ -24,14 +24,15 @@ public class Main extends Application {
     }
     public static Scene scene4;
     public static Scene scene3;
+
     static Pane root = new Pane();
     //scene= scene du jeu
     //scene1=scene du menu
     //scene2=scene des règles du jeu
-    private static Personnages boss0 = new Personnages("hades", 64 * 7, 64 * 7, 100, 20, 512, 10);
+    private static Personnages boss0 = new Personnages("hades", 64 * 7, 64 * 7, 10, 20, 512, 10);
     private static Personnages boss = new Personnages("poseidon", 64 * 7, 64 * 7, 10, 20, 512, 10);
-    private static Personnages boss1 = new Personnages("aphrodite", 64 * 7, 64 * 7, 100, 20, 512, 10);
-    private static Personnages boss2 = new Personnages("zeus", 64 * 7, 64 * 7, 100, 20, 512, 10);
+    private static Personnages boss1 = new Personnages("aphrodite", 64 * 7, 64 * 7, 10, 20, 512, 10);
+    private static Personnages boss2 = new Personnages("zeus", 64 * 7, 64 * 7, 10, 20, 512, 10);
     private static Personnages hero = new Personnages("hero", (int) Personnages.getDeplacement(), (int) Personnages.getDeplacement(), 100, 20, 20, 10);
     private static Rectangle eclair=new Rectangle(64,64,128,64);
     private static Rectangle coeurAphrodite=new Rectangle(64,64,128,64);
@@ -41,6 +42,21 @@ public class Main extends Application {
     public void start(Stage stage) {
         primaryStage = stage;
         //Button
+        Personnages.getHades2().setFill(boss0.getSprite()[4]);
+        Personnages.getHades2().setX(768);
+        Personnages.getHades2().setY(6*64);
+        Personnages.getPoseidon2().setFill(boss.getSprite()[4]);
+        Personnages.getPoseidon2().setX(768);
+        Personnages.getPoseidon2().setY(7*64);
+        Personnages.getPoseidon2().setOpacity(0);
+        Personnages.getAphrodite2().setFill(boss1.getSprite()[4]);
+        Personnages.getAphrodite2().setX(768);
+        Personnages.getAphrodite2().setY(8*64);
+        Personnages.getZeus2().setFill(boss2.getSprite()[4]);
+        Personnages.getZeus2().setX(768);
+        Personnages.getZeus2().setY(9*64);
+
+
         Button button = new Button("Jouer");
 
         button.setOnMouseClicked(e -> {
@@ -129,13 +145,17 @@ public class Main extends Application {
 
         root2.setBackground(new Background(regle));
 
+
+
         root2.setLayoutX(225);
         root2.setLayoutY(100);
         root3.setBackground(new Background(menu));
         root4.getChildren().add(root2);
         root4.getChildren().add(layout2);
         root3.getChildren().add(layout1);
-        Map.putMapImage();
+        Map.putMapImage(Map.getMap());
+        Map.putMapImage(Map.getMap2());
+
         VBox layout3 = new VBox(40) ;
         VBox layout4 = new VBox(40) ;
         Text text = new Text();
@@ -179,6 +199,7 @@ public class Main extends Application {
 
         root6.setBackground(new Background(menu));
 
+
         root.getChildren().addAll(Map.getMap());
 
         root.getChildren().add(hero.getRectangle());
@@ -189,6 +210,10 @@ public class Main extends Application {
         root.getChildren().add(boss.getCircle());
         root.getChildren().add(boss.getCircle2());
         root.getChildren().add(boss.getViePersonnage());
+        root.getChildren().add(Personnages.getHades2());
+        root.getChildren().add(Personnages.getAphrodite2());
+        root.getChildren().add(Personnages.getZeus2());
+        root.getChildren().add(Personnages.getPoseidon2());
         root.getChildren().add(eclair) ;
         root.getChildren().add(requin) ;
         root.getChildren().add(coeurAphrodite) ;
@@ -244,8 +269,8 @@ public class Main extends Application {
     }
 
     public void creerRect(Rectangle nom,String objet){
-        nom.setX(384);
-        nom.setY(384);
+        nom.setX(30);
+        nom.setY(30);
         Image bomb = ImageLoader.get().load(objet+".png");
         nom.setFill(new ImagePattern(bomb));
         nom.opacityProperty().set(0);}
@@ -269,5 +294,7 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+
 
 }

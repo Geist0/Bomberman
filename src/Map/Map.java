@@ -10,7 +10,7 @@ import javafx.scene.shape.Rectangle;
 public class Map{
     static private Case[] listeCase;
     static private final int MAX=169;
-    static Rectangle[] mapRectangle = new Rectangle[169] ;
+
 
 
     static public Case[] creation(){
@@ -34,6 +34,7 @@ public class Map{
     private static Image obstacle = ImageLoader.get().load("obstacle.png");
     private static ImagePattern obstaclePattern = new ImagePattern(obstacle) ;
     static final Rectangle[] map = Map.getMapRectangle() ;
+    public static Rectangle[] map2 = Map.getMapRectangle() ;
 
     static final public Case[] creationCase(Case[] listeCase){
         for (int i=0;i<13;i++) {
@@ -58,7 +59,9 @@ public class Map{
         }
         return listeCase;
     }
+
     public static Rectangle[] getMapRectangle() {
+        Rectangle[] mapRectangle = new Rectangle[169] ;
         Case[] cases = Map.creation();
         cases = Map.creationCase(cases);
         for (int i=0;i<169;i++){
@@ -88,8 +91,8 @@ public class Map{
 
 
 
-    public static void putMapImage() {
-        for(Rectangle i : map ) {
+    public static void putMapImage(Rectangle[] mapI) {
+        for(Rectangle i : mapI ) {
             if (i.getFill().equals(Color.BLACK) && (i.getY()== i.getHeight()*12 || i.getY() == 0) && i.getX() != 0 && i.getX() != i.getWidth()*12  ) {
                 i.setFill(new ImagePattern(mur4));
             }
@@ -123,13 +126,22 @@ public class Map{
         }
     }
 
+    public static void refillMap(Rectangle[] map2) {
+        for(int i = 0 ; i<169 ; i++) {
+            map[i].setFill(map2[i].getFill());
+
+        }
+    }
+
     public static Rectangle[] getMap() {
         return map ;
     }
 
+
+
     public static ImagePattern getObstacle() {return arbrePattern ;}
     public static ImagePattern getObstacle1() {return obstaclePattern ;}
     public static ImagePattern getMur0() {return mur0Pattern ;}
-
+    public static Rectangle[] getMap2() { return map2 ; }
 }
 

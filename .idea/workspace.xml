@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/src/Hero/Personnages.java" line="563" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="cec6b052-e188-4eb9-9fa2-07ba2bb9ce93" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -31,8 +34,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="172" column="27" lean-forward="true" selection-start-line="172" selection-start-column="27" selection-end-line="172" selection-end-column="27" />
+            <state relative-caret-position="357">
+              <caret line="50" column="49" lean-forward="true" selection-start-line="50" selection-start-column="49" selection-end-line="50" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -40,18 +43,42 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Hero/Personnages.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="393" column="195" lean-forward="true" selection-start-line="393" selection-start-column="195" selection-end-line="393" selection-end-column="195" />
+            <state relative-caret-position="323">
+              <caret line="541" column="106" lean-forward="true" selection-start-line="541" selection-start-column="106" selection-end-line="541" selection-end-column="106" />
               <folding>
-                <element signature="e#29015#29016#0" expanded="true" />
-                <element signature="e#29054#29055#0" expanded="true" />
-                <element signature="e#29108#29109#0" expanded="true" />
-                <element signature="e#29185#29186#0" expanded="true" />
-                <element signature="e#29261#29262#0" expanded="true" />
-                <element signature="e#29343#29344#0" expanded="true" />
-                <element signature="e#29411#29412#0" expanded="true" />
-                <element signature="e#29462#29463#0" expanded="true" />
-                <element signature="e#29514#29515#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#32482#32483#0" expanded="true" />
+                <element signature="e#32500#32501#0" expanded="true" />
+                <element signature="e#32522#32523#0" expanded="true" />
+                <element signature="e#32539#32540#0" expanded="true" />
+                <element signature="e#32568#32569#0" expanded="true" />
+                <element signature="e#32593#32594#0" expanded="true" />
+                <element signature="e#32632#32633#0" expanded="true" />
+                <element signature="e#32670#32671#0" expanded="true" />
+                <element signature="e#32713#32714#0" expanded="true" />
+                <element signature="e#32746#32747#0" expanded="true" />
+                <element signature="e#32786#32787#0" expanded="true" />
+                <element signature="e#32828#32829#0" expanded="true" />
+                <element signature="e#32869#32870#0" expanded="true" />
+                <element signature="e#32896#32897#0" expanded="true" />
+                <element signature="e#32925#32926#0" expanded="true" />
+                <element signature="e#32947#32948#0" expanded="true" />
+                <element signature="e#32977#32978#0" expanded="true" />
+                <element signature="e#32999#33000#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Map/Map.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="64" column="16" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="16" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#5370#5371#0" expanded="true" />
+                <element signature="e#5397#5398#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -120,6 +147,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -130,14 +159,30 @@
             <path>
               <item name="Bomberman" type="b2602c69:ProjectViewProjectNode" />
               <item name="IDEA projet" type="462c0819:PsiDirectoryNode" />
-              <item name="sprite" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Bomberman" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IDEA projet" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Hero" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Bomberman" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IDEA projet" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Bomberman" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IDEA projet" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Map" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -236,11 +281,12 @@
       <workItem from="1560272579949" duration="3476000" />
       <workItem from="1560286947024" duration="944000" />
       <workItem from="1560320144584" duration="2583000" />
+      <workItem from="1560371364644" duration="7346000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="185171000" />
+    <option name="totallyTimeSpent" value="192517000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -287,7 +333,7 @@
       <window_info anchor="right" id="Database" order="8" weight="0.32995737" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16151386" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16311301" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -297,7 +343,7 @@
       <window_info id="Learn" order="7" weight="0.32995737" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32917964" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.248104" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24702059" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -333,12 +379,12 @@
     <entry file="file://$PROJECT_DIR$/sprite/poseidondroite2.gif" />
     <entry file="jar://$PROJECT_DIR$/../JavaFX/javafx-sdk-11.0.2/lib/javafx.graphics.jar!/javafx/scene/canvas/Canvas.class" />
     <entry file="file://$PROJECT_DIR$/src/sample.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="jar://$PROJECT_DIR$/../JavaFX/javafx-sdk-11.0.2/lib/javafx.base.jar!/javafx/util/Duration.class" />
     <entry file="file://$PROJECT_DIR$/src/Hero/Bombe.java">
@@ -423,21 +469,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java" />
     <entry file="file://$PROJECT_DIR$/src/Controller.java" />
     <entry file="jar://$PROJECT_DIR$/../JavaFX/javafx-sdk-11.0.2/lib/javafx.base.jar!/javafx/event/EventHandler.class" />
-    <entry file="file://$PROJECT_DIR$/src/Map/Map.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="511">
-          <caret line="130" column="59" lean-forward="true" selection-start-line="130" selection-start-column="59" selection-end-line="130" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5123#5124#0" expanded="true" />
-            <element signature="e#5150#5151#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Hero/Bot.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="867">
@@ -445,27 +478,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="42" column="11" selection-start-line="42" selection-start-column="11" selection-end-line="42" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Map/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="64" column="16" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5370#5371#0" expanded="true" />
+            <element signature="e#5397#5398#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="172" column="27" lean-forward="true" selection-start-line="172" selection-start-column="27" selection-end-line="172" selection-end-column="27" />
+        <state relative-caret-position="357">
+          <caret line="50" column="49" lean-forward="true" selection-start-line="50" selection-start-column="49" selection-end-line="50" selection-end-column="49" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Hero/Personnages.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="393" column="195" lean-forward="true" selection-start-line="393" selection-start-column="195" selection-end-line="393" selection-end-column="195" />
+        <state relative-caret-position="323">
+          <caret line="541" column="106" lean-forward="true" selection-start-line="541" selection-start-column="106" selection-end-line="541" selection-end-column="106" />
           <folding>
-            <element signature="e#29015#29016#0" expanded="true" />
-            <element signature="e#29054#29055#0" expanded="true" />
-            <element signature="e#29108#29109#0" expanded="true" />
-            <element signature="e#29185#29186#0" expanded="true" />
-            <element signature="e#29261#29262#0" expanded="true" />
-            <element signature="e#29343#29344#0" expanded="true" />
-            <element signature="e#29411#29412#0" expanded="true" />
-            <element signature="e#29462#29463#0" expanded="true" />
-            <element signature="e#29514#29515#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#32482#32483#0" expanded="true" />
+            <element signature="e#32500#32501#0" expanded="true" />
+            <element signature="e#32522#32523#0" expanded="true" />
+            <element signature="e#32539#32540#0" expanded="true" />
+            <element signature="e#32568#32569#0" expanded="true" />
+            <element signature="e#32593#32594#0" expanded="true" />
+            <element signature="e#32632#32633#0" expanded="true" />
+            <element signature="e#32670#32671#0" expanded="true" />
+            <element signature="e#32713#32714#0" expanded="true" />
+            <element signature="e#32746#32747#0" expanded="true" />
+            <element signature="e#32786#32787#0" expanded="true" />
+            <element signature="e#32828#32829#0" expanded="true" />
+            <element signature="e#32869#32870#0" expanded="true" />
+            <element signature="e#32896#32897#0" expanded="true" />
+            <element signature="e#32925#32926#0" expanded="true" />
+            <element signature="e#32947#32948#0" expanded="true" />
+            <element signature="e#32977#32978#0" expanded="true" />
+            <element signature="e#32999#33000#0" expanded="true" />
           </folding>
         </state>
       </provider>
