@@ -31,6 +31,7 @@ public class Main extends Application {
     //scene2=scene des règles du jeu
     private static Personnages boss0 = new Personnages("hades", 64 * 7, 64 * 7, 10, 20, 512, 10);
     private static Personnages boss = new Personnages("poseidon", 64 * 7, 64 * 7, 10, 20, 512, 10);
+    private static Personnages boss3 = new Personnages("poseidon", 64 * 7, 64 * 7, 10, 20, 512, 10);
     private static Personnages boss1 = new Personnages("aphrodite", 64 * 7, 64 * 7, 10, 20, 512, 10);
     private static Personnages boss2 = new Personnages("zeus", 64 * 7, 64 * 7, 10, 20, 512, 10);
     private static Personnages hero = new Personnages("hero", (int) Personnages.getDeplacement(), (int) Personnages.getDeplacement(), 100, 20, 20, 10);
@@ -45,6 +46,7 @@ public class Main extends Application {
         Personnages.getHades2().setFill(boss0.getSprite()[4]);
         Personnages.getHades2().setX(768);
         Personnages.getHades2().setY(6*64);
+        Personnages.getHades2().setOpacity(0);
         Personnages.getPoseidon2().setFill(boss.getSprite()[4]);
         Personnages.getPoseidon2().setX(768);
         Personnages.getPoseidon2().setY(7*64);
@@ -60,6 +62,24 @@ public class Main extends Application {
         Button button = new Button("Jouer");
 
         button.setOnMouseClicked(e -> {
+            root.getChildren().addAll(Map.getMap());
+
+            root.getChildren().add(hero.getRectangle());
+            root.getChildren().add(hero.getCircle());
+            root.getChildren().add(hero.getCircle2());
+            root.getChildren().add(hero.getViePersonnage());
+            root.getChildren().add(boss.getRectangle());
+            root.getChildren().add(boss.getCircle());
+            root.getChildren().add(boss.getCircle2());
+            root.getChildren().add(boss.getViePersonnage());
+            root.getChildren().add(Personnages.getHades2());
+            root.getChildren().add(Personnages.getAphrodite2());
+            root.getChildren().add(Personnages.getZeus2());
+            root.getChildren().add(Personnages.getPoseidon2());
+            root.getChildren().add(eclair) ;
+            root.getChildren().add(requin) ;
+            root.getChildren().add(coeurAphrodite) ;
+            root.getChildren().add(trident) ;
             primaryStage.setScene(scene);
             hero.moveRectangleOnKeyPress(scene);
             Threads ia = new Threads();
@@ -103,7 +123,7 @@ public class Main extends Application {
 
 
 
-        primaryStage.setTitle("Bomberman Odyssey");
+        primaryStage.setTitle("Bomberman Odyssee");
         StackPane layout2 = new StackPane();
         layout1.getChildren().add(button1);
         layout1.getChildren().add(button2);
@@ -200,24 +220,7 @@ public class Main extends Application {
         root6.setBackground(new Background(menu));
 
 
-        root.getChildren().addAll(Map.getMap());
 
-        root.getChildren().add(hero.getRectangle());
-        root.getChildren().add(hero.getCircle());
-        root.getChildren().add(hero.getCircle2());
-        root.getChildren().add(hero.getViePersonnage());
-        root.getChildren().add(boss.getRectangle());
-        root.getChildren().add(boss.getCircle());
-        root.getChildren().add(boss.getCircle2());
-        root.getChildren().add(boss.getViePersonnage());
-        root.getChildren().add(Personnages.getHades2());
-        root.getChildren().add(Personnages.getAphrodite2());
-        root.getChildren().add(Personnages.getZeus2());
-        root.getChildren().add(Personnages.getPoseidon2());
-        root.getChildren().add(eclair) ;
-        root.getChildren().add(requin) ;
-        root.getChildren().add(coeurAphrodite) ;
-        root.getChildren().add(trident) ;
 
         scene3 = new Scene(root5, 832, 832);
         scene4=new Scene(root6,832,832);
@@ -230,7 +233,7 @@ public class Main extends Application {
        creerRect(requin,"requin");
 
         primaryStage.setScene(scene1);
-        primaryStage.setTitle("title here");
+        primaryStage.setTitle("Bomberman Odyssee ");
         primaryStage.show();
 
     }
@@ -245,6 +248,10 @@ public class Main extends Application {
 
     public static Personnages getBoss2() {
         return boss2;
+    }
+
+    public static Personnages getBoss3() {
+        return boss3;
     }
 
     public static Personnages getBoss0() {
