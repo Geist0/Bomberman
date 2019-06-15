@@ -653,8 +653,8 @@ public class Personnages  {
                         new KeyFrame(Duration.millis(4000), new KeyValue(Main.getBoss().getRectangle().xProperty(),64*7)));
 
 
-                Main.getHero().setHp(120);
-                Main.getHero().setViePersonnage(Main.getHero().getHp());
+
+
                 Main.getHero().getRectangle().setX(64);
                 Main.getHero().getRectangle().setY(64);
 
@@ -688,8 +688,6 @@ public class Personnages  {
                         new KeyFrame(Duration.millis(4000), new KeyValue(Main.getBoss().getRectangle().xProperty(),64*7)));
 
 
-                Main.getHero().setHp(120);
-                Main.getHero().setViePersonnage(Main.getHero().getHp());
                 Main.getHero().getRectangle().setX(64);
                 Main.getHero().getRectangle().setY(64);
 
